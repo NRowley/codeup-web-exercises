@@ -9,7 +9,8 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 function sayHello(name){
-    return "Hello " + name + "!";
+    //return "Hello " + name + "!";
+    return `Hello, ${name}!`;
 }
 
 /**
@@ -86,7 +87,7 @@ console.log("Is this two? " + isTwo2(random));
  */
 function calculateTip(percent, price){
     console.log("The bill is: $" + price);
-    console.log("You are tipping: %" + (percent * 100));
+    console.log("If you are tipping: %" + (percent * 100));
     let tip = price * percent;
     return tip;
 }
@@ -123,4 +124,4 @@ function applyDiscount(price, discount){
     return price - (price * discount);
 };
 
-console.log("The discounted price of this item is: $" + applyDiscount(ogPrice, discountPercent));
+console.log("The discounted price of this item is: $" + applyDiscount(ogPrice, discountPercent).toFixed(2));

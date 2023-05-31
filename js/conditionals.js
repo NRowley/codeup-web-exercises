@@ -35,6 +35,7 @@
 // }
 function analyzeColor(color){
     color = color.toLowerCase();
+    color = color.trim();
     switch(color) {
         case "white":
             return "white is the color of clouds";
@@ -49,10 +50,10 @@ function analyzeColor(color){
             break;
         case "blue":
             return "blue is the color of water (pre-pollution)";
-        case " yellow":
+        case "yellow":
             return "yellow is my sons favorite color!";
         default:
-            return color + " is a color that exists, probably...";
+            return `${color} is probably a color`;
             break;
     }
 }
@@ -85,7 +86,7 @@ console.log(analyzeColor(randomColor));
  * function to show it to the user.
  */
 const userColor = prompt("What's your favorite color?");
-console.log(userColor);
+console.log(`Your favorite color is ${userColor}`);
 alert(analyzeColor(userColor));
 
 /* ########################################################################## */
@@ -137,7 +138,7 @@ console.log(calculateTotal(3, 100));
 //Generate a random number between 0 and 6
 var luckyNumber = Math.floor(Math.random() * 6);
 
-const totalBill = prompt("What is the total of your bill?");
+const totalBill = prompt(`Your lucky number is ${luckyNumber}, what is the total of your bill?`);
 console.log(calculateTotal(luckyNumber, totalBill));
 
 /**
@@ -163,23 +164,32 @@ const userInput = confirm("Would you like to enter a number??");
 if (userInput === true){
     let userNumber = prompt("Please enter your number");
     userNumber = parseInt(userNumber)
+    //make sure the input is a number type
     if (typeof userNumber == "number"){
-        console.log(userNumber);
+        console.log(`Your chosen number is ${userNumber}`);
 
+        //Check if number is even or odd
         if(userNumber %2 === 0){
-            alert("The number " + userNumber + " is even");
+            //alert("The number " + userNumber + " is even");
+            alert(`The number ${userNumber} is even`);
         } else {
-            alert("The number " + userNumber + " is odd");
+            //alert("The number " + userNumber + " is odd");
+            alert(`The number ${userNumber} is ood`);
         }
+
+        //check if number is positive or negative
         if(userNumber > 0){
-            alert("The number " + userNumber + " is positive");
+            //alert("The number " + userNumber + " is positive");
+            alert(`The number ${userNumber} is positive`);
         } else if(userNumber < 0){
-            alert("The number " + userNumber + " is negative");
+            //alert("The number " + userNumber + " is negative");
+            alert(`The number ${userNumber} is negative`);
         } else {
             alert("This number is neither positive or negative");
         }
-        alert(userNumber + " x 100 is " + (userNumber * 100));
-
+        //Multiply the number by 100
+        //alert(userNumber + " x 100 is " + (userNumber * 100));
+        alert(`${userNumber} x 100 is ${userNumber * 100}`);
     } else {
         alert("Invalid entry, please enter a number");
     }
