@@ -9,7 +9,6 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 function sayHello(name){
-    console.log("Hello " + name + "!");
     return "Hello " + name + "!";
 }
 
@@ -30,8 +29,8 @@ console.log(helloMessage);
  * console.
  */
 
-let myName = "Nicholas";
-sayHello(myName);
+let myName = "Rowley";
+console.log(sayHello(myName));
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
@@ -56,20 +55,16 @@ var random = Math.floor((Math.random() * 3) + 1);
  */
 function isTwo(x){
     if(x === 2){
-        console.log(true);
         return true;
-
     } else {
-        console.log(false);
         return false;
-
     }
 }
 
-isTwo(1);
-isTwo(2);
-isTwo(3);
-isTwo(random);
+console.log(isTwo(1));
+console.log(isTwo(2));
+console.log(isTwo(3));
+console.log(isTwo(random));
 
 /**
  * TODO:
@@ -84,9 +79,9 @@ isTwo(random);
  */
 function calculateTip(percent, price){
     let tip = price * percent;
-    console.log("Recommended tip is: $" + tip);
+    return tip;
 }
-calculateTip(0.20, 20);
+console.log(calculateTip(0.20, 20));
 
 /**
  * TODO:
@@ -96,7 +91,7 @@ calculateTip(0.20, 20);
  */
 let bill = prompt("How much is the Bill?");
 let tipPercent = prompt("What percentage of the bill would you like to tip (in decimal format)?");
-calculateTip(tipPercent, bill);
+console.log("The recommended tip for this bill is: $" + calculateTip(tipPercent, bill));
 
 /**
  * TODO:
@@ -115,8 +110,7 @@ calculateTip(tipPercent, bill);
 let ogPrice = 50;
 let discountPercent = 0.2 //20%
 function applyDiscount(price, discount){
-    let discountPrice = price - (price * discount);
-    console.log("The discounted price of this item is: $" + discountPrice);
-}
+    return price - (price * discount);
+};
 
-applyDiscount(ogPrice, discountPercent);
+console.log("The discounted price of this item is: $" + applyDiscount(ogPrice, discountPercent));
