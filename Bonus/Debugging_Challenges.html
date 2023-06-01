@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rowley - Function Debugging</title>
+</head>
+<body>
+
+<h1>HALP! I need help with functions.</h1>
+
+<script>
+  "use strict";
+
+  // TODO Help! When I run this code in the browser, I don't see an alert. What's wrong???
+
+  function alertHowdy() {
+    alert('Howdy!');
+  }
+  //You need to call the function
+  alertHowdy();
+
+  // TODO Help! I'm getting undefined in this alert. What's wrong???
+
+  let num1 = 5;
+  let num2 = 2
+  function addTwoNumbers(num1, num2) {
+    console.log(num1 + num2);
+    return num1 + num2;
+  }
+  alert(addTwoNumbers(num1, num2));
+//You need to return the result from the function
+
+  // TODO Help! Why is this always logging the wrong message?
+
+  function returnPunctuationMsg(punctuation) {
+    let msg;
+    switch(punctuation) {
+      case '!':
+        msg = 'This is an exclamation point';
+        break;
+      case '.':
+        msg = 'This is a period';
+        break;
+      case '?':
+        msg = 'This is a question mark';
+        break;
+      case ',':
+        msg = 'This is a comma';
+        break;
+      default:
+        msg = 'I don\'t know what this is...';
+        break;
+    }
+    return msg;
+  }
+
+  console.log(returnPunctuationMsg('!'));
+  //You need to add "breaks" after your switch cases
+
+  // TODO Help! Why is this always showing me that the input is seven?
+
+  function isSeven(num) {
+    if (num == 7) {
+      console.log('This is seven.');
+    } else {
+      console.log('This is NOT seven.');
+    }
+  }
+
+  isSeven(5);
+  //In the if statement, the condition needs 2 or more equal signs to check if the value/type is 7
+
+  // TODO Help! Why doesn't this log 4???
+
+  function returnTwo() {
+    return 2;
+  }
+
+  console.log(parseInt(returnTwo()) + parseInt(returnTwo()));
+  //not sure why on this one, but it works now
+
+  // TODO Help! Why does it not matter what I enter, it is always logs the same message!
+
+  function logAdminIn(isAdmin) {
+      if (isAdmin == true) {
+          console.log('Logging admin in...');
+      } else {
+          console.log('Redirecting user to regular page...');
+      }
+  }
+
+  let isAdmin = confirm("User one, please confirm that you are an admin.");
+  console.log(logAdminIn(isAdmin));
+
+  let isAdmin2 = confirm("User two, please confirm that you are an admin.");
+  console.log(logAdminIn(isAdmin2));
+
+  let isAdmin3 = confirm("User three, please confirm that you are an admin.");
+  console.log(logAdminIn(isAdmin3));
+
+// the function needs a parameter, and that parameter needs to be checked if it is true in the if statement
+</script>
+
+</body>
+</html>

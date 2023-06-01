@@ -121,8 +121,10 @@ function calculateTotal(luckyNumber, totalAmount){
         return "Your lucky number is... " + luckyNumber + ". You get a %35 discount, your total is: $" + (totalAmount - (totalAmount * 0.35));
     } else if (luckyNumber === 4){
         return "Your lucky number is... " + luckyNumber + ". You get a %50 discount, your total is: $" + (totalAmount - (totalAmount * 0.50));
-    } else {
+    } else if (luckyNumber === 5){
         return "Your lucky number is... " + luckyNumber + ". Congratulations, you get a %100 discount!";
+    } else {
+        return "ERROR";
     }
 }
 console.log(calculateTotal(3, 100));

@@ -1,4 +1,4 @@
-// OLD STAR BONUS
+// GOLD STAR BONUS
 // Create a distance unit conversion application.
 //     Prompt the user for unit of measurement.
 //     Prompt the user for a value.
@@ -111,6 +111,9 @@ while (userConverting == true) {
                     break;
                 case "miles":
                     console.log(`${inchesToMiles(measurementValue).toFixed(5)} miles`);
+                default:
+                    console.log(`error`);
+                    break;
             }
             break;
 //FEET CASES
@@ -125,6 +128,9 @@ while (userConverting == true) {
                 case "miles":
                     console.log(`${feetToMiles(measurementValue).toFixed(5)} miles`);
                     break;
+                default:
+                    console.log(`error`);
+                    break;
             }
             break;
 //MILES CASES
@@ -138,6 +144,9 @@ while (userConverting == true) {
                     break;
                 case "miles":
                     console.log(`${measurementValue} miles`);
+                    break;
+                default:
+                    console.log(`error`);
                     break;
             }
             break;
@@ -164,6 +173,9 @@ while (userConverting == true) {
                     case "kilometers":
                         console.log(`${inchesToKilometers(measurementValue).toFixed(5)} kilometers`);
                         break;
+                    default:
+                        console.log(`error`);
+                        break;
                 }
             //FEET CASES
             case "feet":
@@ -177,6 +189,9 @@ while (userConverting == true) {
                     case "kilometers":
                         console.log(`${feetToKilometers(measurementValue).toFixed(5)} kilometers`);
                         break;
+                    default:
+                        console.log(`error`);
+                        break;
                 }
             case "miles":
                 switch (metricUnit) {
@@ -189,7 +204,13 @@ while (userConverting == true) {
                     case "kilometers":
                         console.log(`${milesToKilometers(measurementValue).toFixed(5)} kilometers`);
                         break;
+                    default:
+                        console.log(`error`);
+                        break;
                 }
+                break;
+            default:
+                console.log(`error`);
                 break;
         }
     }
