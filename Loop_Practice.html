@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rowley Loop Practice</title>
+</head>
+<body>
+<script>
+    let n = 0;
+    while (n < 10) {
+        console.log('NIC');
+        n++;
+    }
+
+    function getNum1To10(input) {
+        while(input > 10 || input < 1){
+            console.log(input);
+            input = prompt('I said enter a number between 1 and 10');
+        }
+        return input;
+    }
+    console.log(getNum1To10(parseInt(prompt('enter a number between 1 and 10'))));
+
+</script>
+</body>
+</html>
