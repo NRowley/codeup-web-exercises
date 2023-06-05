@@ -6,20 +6,40 @@
 </head>
 <body>
 <script>
-    let n = 0;
-    while (n < 10) {
-        console.log('NIC');
-        n++;
-    }
+    // let n = 0;
+    // while (n < 10) {
+    //     console.log('NIC');
+    //     n++;
+    // }
+    //
+    // function getNum1To10(input) {
+    //     while(input > 10 || input < 1){
+    //         console.log(input);
+    //         input = prompt('I said enter a number between 1 and 10');
+    //     }
+    //     return input;
+    // }
+    // console.log(getNum1To10(parseInt(prompt('enter a number between 1 and 10'))));
 
-    function getNum1To10(input) {
-        while(input > 10 || input < 1){
-            console.log(input);
-            input = prompt('I said enter a number between 1 and 10');
-        }
-        return input;
+    // let dateQuestion = false;
+    // let datePrompts = true;
+    //
+    // do {
+    //     dateQuestion = confirm('Display the current date and time?');
+    //     if (dateQuestion === true) {
+    //         alert(new Date().toLocaleString());
+    //         dateQuestion = false;
+    //     } else if (dateQuestion === false) {
+    //         datePrompts = false;
+    //     }
+    // } while (datePrompts === true);
+
+    for (let i = 2; i <= 100; i += 2) {
+        console.log(i);
     }
-    console.log(getNum1To10(parseInt(prompt('enter a number between 1 and 10'))));
+    for (let i = 20; i >= 1; i--){
+        console.log(i);
+    }
 
 </script>
 </body>
