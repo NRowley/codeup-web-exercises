@@ -1,3 +1,5 @@
+console.log('---In for_loops.js---')
+//Multiplication table function
 function showMultiplicationTable(x) {
     x = parseInt(x);
     for (let i = 1; i < 11; i++) {
@@ -5,15 +7,17 @@ function showMultiplicationTable(x) {
     }
 }
 
+//RNG function
 function randomNumberGenerator(min, max) {
     return (Math.random() * (max - min) + min).toFixed(0);
 }
 
+//Multiplication table exercise
 let userNumber = prompt(`please enter a number`);
 console.log(`Generating multiplication table for ${userNumber}`);
 showMultiplicationTable(userNumber);
 
-//console.log(randomNumberGenerator(20, 200));
+//Even and Odd Random Number Exercise
 let randomNumberChecker = confirm("Would you like to check for even and odd numbers?");
 
 if (randomNumberChecker == true) {
@@ -29,6 +33,7 @@ if (randomNumberChecker == true) {
     console.log("Even and Odd random number checker canceled");
 }
 
+//Number Pyramid Exercise
 let numberPyramid = confirm("Want to see the number pyramid?");
 
 if (numberPyramid == true) {
@@ -39,6 +44,7 @@ if (numberPyramid == true) {
     console.log("Number pyramid canceled");
 }
 
+//Count down by 5 from 100 exercise
 let fiveCountDown = confirm("Do you wanna count down by 5 from 100?");
 
 if (fiveCountDown == true) {
