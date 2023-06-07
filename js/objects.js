@@ -54,7 +54,7 @@
 
     //Function to apply discount
     function hebDiscount(name, amount) {
-        amount = parseInt(amount);
+        // amount = parseInt(amount);
         if (amount > 200) {
             return `${name} has spent $${amount}, they get a 12% discount. Their new total is $${(amount - (amount * 0.12)).toFixed(2)}.`
         } else {
@@ -67,7 +67,6 @@
         console.log(shopper);
         console.log(hebDiscount(shopper.name, shopper.amount));
     });
-
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -90,7 +89,7 @@
             }
         },
         {
-            title: "Dog Life: 10 Great Places to Poop When it's raining outside",
+            title: "Dog Life: 10 Great Places to Poop When it's Raining Outside",
             author: {
                 firstName: 'Halen',
                 lastName: 'Rowley',
@@ -156,5 +155,37 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+    console.log(`---BONUS: CreateBook and showBookInfo---`);
 
+//initialize someBooks for added books and addBooks boolean for adding the books in a prompt loop
+    let someBooks = [];
+    let addBooks = true;
+    // console.log(typeof someBooks);
+
+    //createBook function, takes in title and author from a prompt to the user
+    function createBook(title, firstName, lastName) {
+        let aBook = {
+            title: title,
+            author: {
+                firstName: firstName,
+                lastName: lastName,
+            },
+        }
+        someBooks.push(aBook);
+        return someBooks;
+    }
+
+    //Function display a books info
+    function showBookInfo(book) {
+        console.log(`Book #${someBooks.indexOf(book)}`);
+    }
+
+    //do while loop to prompt the user for books
+    do {
+        console.log(createBook(prompt(`Enter the Title of the Book`), prompt(`Enter the Authors First Name`), prompt(`Enter the Authors Last Name`)));
+        addBooks = confirm('Add another book?');
+    } while (addBooks === true);
+
+    //show info for book
+    console.log(showBookInfo(prompt('Enter a book Title to check')));
 })();
