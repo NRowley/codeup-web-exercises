@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var planets = [
+    let planets = [
         'Mercury',
         'Venus',
         'Earth',
@@ -19,26 +19,37 @@
      */
 
     console.log('Adding "The Sun" to the beginning of the planets array.');
-    console.log(planets);
+    //console.log(planets);
     planets.unshift('The Sun');
     console.log(planets);
 
     console.log('Adding "Pluto" to the end of the planets array.');
-    console.log(planets);
+    //console.log(planets);
     planets.push('Pluto');
     console.log(planets);
 
     console.log('Removing "The Sun" from the beginning of the planets array.');
+    //console.log(planets);
+    let sun = planets.shift();
     console.log(planets);
+    console.log(sun);
 
     console.log('Removing "Pluto" from the end of the planets array.');
+    //console.log(planets);
+    let pluto = planets.pop();
     console.log(planets);
 
     console.log('Finding and logging the index of "Earth" in the planets array.');
+    let earthIndex = planets.indexOf('Earth');
+    console.log(earthIndex);
 
     console.log("Reversing the order of the planets array.");
+    //console.log(planets);
+    planets.reverse();
     console.log(planets);
 
     console.log("Sorting the planets array.");
+    //console.log(planets);
+    planets.sort();
     console.log(planets);
 })();
