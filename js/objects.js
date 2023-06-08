@@ -111,8 +111,6 @@
         }
     ]
 
-    console.log(books);
-
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -139,11 +137,13 @@
      */
     //Function to show all books and info
     function catalogue(book) {
-        return `Book #${books.indexOf(book)}; ${book.title}; ${book.author}`;
+        const bookNumber = parseInt(books.indexOf(book)) +1;
+        // return `Book #${books.indexOf(book)}; ${book.title}; ${book.author}`;
+        console.log("Book #" + bookNumber, book, book.author);
     }
 
     books.forEach(function (book) {
-        console.log(catalogue(book));
+        catalogue(book);
     });
     /**
      * Bonus:
@@ -174,18 +174,15 @@
         someBooks.push(aBook);
         return someBooks;
     }
-
-    //Function display a books info
-    function showBookInfo(book) {
-        console.log(`Book #${someBooks.indexOf(book)}`);
+//show created book info function
+    function catalogueCreatedBooks(book) {
+        console.log("The Book is", book, book.author);
     }
-
-    //do while loop to prompt the user for books
+    // do while loop to prompt the user for books
     do {
         console.log(createBook(prompt(`Enter the Title of the Book`), prompt(`Enter the Authors First Name`), prompt(`Enter the Authors Last Name`)));
         addBooks = confirm('Add another book?');
     } while (addBooks === true);
 
-    //show info for book
-    console.log(showBookInfo(prompt('Enter a book Title to check')));
+    catalogueCreatedBooks(someBooks[0]);
 })();
