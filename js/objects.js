@@ -89,7 +89,7 @@
             }
         },
         {
-            title: "Dog Life: 10 Great Places to Poop When it's Raining Outside",
+            title: "Moochin' 101",
             author: {
                 firstName: 'Halen',
                 lastName: 'Rowley',
@@ -137,9 +137,9 @@
      */
     //Function to show all books and info
     function catalogue(book) {
-        const bookNumber = parseInt(books.indexOf(book)) +1;
+        const bookNumber = books.indexOf(book) + 1;
         // return `Book #${books.indexOf(book)}; ${book.title}; ${book.author}`;
-        console.log("Book #" + bookNumber, book, book.author);
+        console.log("Book #" + bookNumber + "\n Title: " + book.title + "\n Author: " + book.author.firstName, book.author.lastName);
     }
 
     books.forEach(function (book) {
@@ -174,15 +174,17 @@
         someBooks.push(aBook);
         return someBooks;
     }
-//show created book info function
+
+//Function to show created book info
     function catalogueCreatedBooks(book) {
-        console.log("The Book is", book, book.author);
+        console.log("The Book is: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName);
     }
+
     // do while loop to prompt the user for books
     do {
         console.log(createBook(prompt(`Enter the Title of the Book`), prompt(`Enter the Authors First Name`), prompt(`Enter the Authors Last Name`)));
         addBooks = confirm('Add another book?');
     } while (addBooks === true);
 
-    catalogueCreatedBooks(someBooks[0]);
+    catalogueCreatedBooks(someBooks[prompt(`Total Books: ${someBooks.length}. Enter the number of the Book to check`) - 1]);
 })();
