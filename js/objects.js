@@ -177,7 +177,9 @@
 
 //Function to show created book info
     function catalogueCreatedBooks(book) {
-        console.log("The Book is: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName);
+        // console.log("The Book is: " + book.title + "\nAuthor: " + book.author.firstName + " " + book.author.lastName);
+        console.log(`The Book is ${book.title}
+        Author: ${book.author.firstName} ${book.author.lastName}`)
     }
 
     // do while loop to prompt the user for books
