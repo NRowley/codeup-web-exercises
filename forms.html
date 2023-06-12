@@ -5,6 +5,70 @@
     <title>Rowley - Forms</title>
 </head>
 <body>
+<form method="POST" action="https://request-inspector.glitch.me/" target="_blank">
+    <fieldset>
+        <legend><h3>User Information</h3></legend>
+        <label for="email">
+            Email: <input id="email" type="email" placeholder="Email" name="email" value="nic@ryan.rowley"><br>
+        </label>
+        <label for="password">
+            Password: <input id="password" type="password" placeholder="Password" name="password" value="password!">
+        </label>
+        <br>
+        <label for="bio">
+            Biography:<br>
+            <textarea id="bio" placeholder="User Biography" name="userBio">no</textarea>
+        </label>
+        <br>
+    </fieldset>
 
+    <br>
+    <fieldset>
+        <legend>
+            <h3>How did you hear about us?</h3>
+        </legend>
+        <label for="billboard">
+            <input id="billboard" type="radio" name="question1" value="billboard">Billboard<br>
+        </label>
+        <label for="radioAd">
+            <input type="radio" name="question1" value="radio">Radio Advertisement<br>
+        </label>
+        <label for="internetAd">
+            <input type="radio" name="question1" value="internet ad">Internet Advertisement<br>
+        </label>
+        <label for="other">
+            <input type="radio" name="question1" value="other">Other<br>
+        </label>
+    </fieldset>
+    <!--    Multi-select allowed, names of radio buttons are specific to the button(not sharing a single name)-->
+    <!--    <label for="billboard">-->
+    <!--        <input id="billboard" type="radio" name="Billboard" value="billboard">Billboard<br>-->
+    <!--    </label>-->
+    <!--    <label for="radioAd">-->
+    <!--        <input type="radio" name="Radio_Ad" value="radioAd">Radio Advertisement<br>-->
+    <!--    </label>-->
+    <!--    <label for="internetAd">-->
+    <!--        <input type="radio" name="Internet_Ad" value="internetAd">Internet Advertisement<br>-->
+    <!--    </label>-->
+    <!--    <label for="other">-->
+    <!--        <input type="radio" name="Other" value="other">Other<br>-->
+    <!--    </label>-->
+    <fieldset>
+        <legend>
+            <h3>What Browser are you using?</h3>
+        </legend>
+        <label for="browsers">
+            <select id="browsers" name="Browser">
+                <option name="Google_Chrome" value="Google Chrome">Google Chrome</option>
+                <option name="Mozilla_Firefox" value="Mozilla Firefox">Mozilla Firefox</option>
+                <option name="Microsoft_Edge" value="Microsoft Edge">Microsoft Edge</option>
+                <option name="Other" value="Other">Other</option>
+            </select>
+        </label>
+    </fieldset>
+    <label for="submit">
+        <button type="submit" id="submit" value="submit">SUBMIT</button>
+    </label>
+</form>
 </body>
 </html>
