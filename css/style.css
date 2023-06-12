@@ -1,4 +1,64 @@
-.fancy-header {
-    color: purple;
+h1.fancy-header {
+    color: navy;
     text-decoration: underline;
+    text-align: center;
+    font-family: "Arial Black", serif;
 }
+
+h3 {
+    color: navy;
+    text-decoration: underline;
+    text-align: center;
+    font-family: "Arial Black", serif;
+}
+
+body {
+    background-color: lightcyan;
+}
+
+main {
+    background-image: url("img/codeup_pride.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+    font-family: "Arial", serif;
+}
+
+ul {
+    list-style-type: square;
+}
+
+footer {
+    font-family: "Arial", serif;
+    text-align: center;
+}
+
+table {
+    border: 1px black double;
+    align-content: center;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    text-decoration: underline;
+    font-family: "Arial Black", serif;
+    text-align: center;
+    font-size: 16px;
+}
+
+a:link {
+    color: royalblue;
+}
+
+a:visited {
+    color: grey;
+}
+
+a:hover {
+    color: darkcyan;
+}
+
