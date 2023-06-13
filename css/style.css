@@ -1,19 +1,23 @@
 h1.fancy-header {
-    color: navy;
+    color: darkorange;
     text-decoration: underline;
     text-align: center;
     font-family: "Arial Black", serif;
 }
+header {
+    color: darkorange;
+    text-align: center;
+}
 
 h3 {
-    color: navy;
+    color: darkorange;
     text-decoration: underline;
     text-align: center;
     font-family: "Arial Black", serif;
 }
 
 body {
-    background-color: lightcyan;
+    background-color: navy;
 }
 
 main {
@@ -21,6 +25,7 @@ main {
     background-repeat: no-repeat;
     background-position: top right;
     font-family: "Arial", serif;
+    color: gray;
 }
 
 ul {
@@ -31,19 +36,28 @@ footer {
     font-family: "Arial", serif;
     text-align: center;
 }
+#vision_img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 table {
     border: 1px black double;
     align-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td {
+    color: gray;
     padding: 10px;
     text-align: center;
     font-size: 16px;
 }
 
 th {
+    color: darkorange;
     text-decoration: underline;
     font-family: "Arial Black", serif;
     text-align: center;
@@ -60,5 +74,9 @@ a:visited {
 
 a:hover {
     color: darkcyan;
+}
+
+#product {
+    text-align: center;
 }
 

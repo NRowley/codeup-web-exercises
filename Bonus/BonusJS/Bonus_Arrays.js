@@ -79,19 +79,23 @@ console.log("---------JS Array Practice----------");
 */
 
 // Exercise 0. Write a function named first() that returns only the first element of an array
+console.log('---EX0---')
 let arrayOfNumbers = ['1', '2', '3', '4', '5'];
+console.log(`Array used for exercises 1 and 2: ${arrayOfNumbers}`);
 function first(arr){
     return arr[0];
 }
-console.log(first(arrayOfNumbers));
+console.log(`Function that returns the first number: ${first(arrayOfNumbers)}`);
 
 // Exercise 1. Write a function named secondToLast() that returns the second to last element
+console.log('---EX1---');
 function secondToLast(arr){
     return arr[arr.length-2];
 }
-console.log(secondToLast(arrayOfNumbers));
+console.log(`Function that returns the second to last number: ${secondToLast(arrayOfNumbers)}`);
 
 // Exercise 2. Write a function named rest() that takes an array and returns an array containing everything except the first element.
+console.log('---EX2---')
 function rest(arr){
     return arr.shift();
 }
