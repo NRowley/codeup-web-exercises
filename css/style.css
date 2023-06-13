@@ -1,5 +1,4 @@
 /*css variables*/
-
 :root {
     --burntorange: #d96911;
     --orangeBG: rgba(210, 133, 72, 0.55);
@@ -16,10 +15,30 @@ h1.fancy-header {
     color: var(--burntorange);
     text-decoration: underline;
     text-align: center;
-    font-family: "Arial Black", serif;
+    /*font-family: "Arial Black", serif;*/
+    font-family: 'Tilt Prism', cursive;
     text-transform: uppercase;
     text-decoration-style: double;
     text-decoration-color: var(--visionBG);
+    animation: breathe 1s infinite;
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(100%);
+    }
+    25% {
+        transform: scale(102%);
+    }
+    50% {
+        transform: scale(105%);
+    }
+    75% {
+        transform: scale(102%);
+    }
+    100% {
+        transform: scale(100%);
+    }
 }
 
 header {
@@ -35,10 +54,43 @@ h3 {
     color: var(--burntorange);
     text-decoration: underline;
     text-align: center;
-    font-family: "Arial Black", serif;
+    /*font-family: "Arial Black", serif;*/
+    font-family: 'Tilt Prism', cursive;
+    /*background: lightgray;*/
+    animation: rotation 1s infinite;
 }
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    16% {
+        transform: rotate(60deg);
+    }
+    32% {
+        transform: rotate(120deg);
+    }
+    48% {
+        transform: rotate(180deg);
+    }
+    64% {
+        transform: rotate(240deg);
+    }
+    80% {
+        transform: rotate(300deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 #veridian_info {
-    background: var(--orangeBG);
+    /*background: var(--orangeBG);*/
+}
+
+#core_values, #vision, #process {
+    padding-bottom: 20px;
+    border-radius: 10px;
 }
 
 #core_values {
@@ -55,6 +107,8 @@ h3 {
 
 body {
     background-color: var(--dustynavy);
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 main {
@@ -69,6 +123,20 @@ main h3 {
     text-transform: uppercase;
 }
 
+li {
+    margin: 10px;
+}
+
+li:hover {
+    transform: scale(400%);
+    text-align: center;
+    color: yellow;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
 ul {
     list-style-type: square;
 }
@@ -80,8 +148,10 @@ footer {
 
 #vision_img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    margin: 0 auto;
+    width: 70%;
 }
 
 table {
@@ -124,3 +194,27 @@ a:hover {
     text-align: center;
 }
 
+em {
+    animation: colorchange 1s infinite alternate;
+}
+
+@keyframes colorchange {
+    0% {
+        color: red;
+    }
+    20% {
+        color: orange;
+    }
+    40% {
+        color: yellow;
+    }
+    60% {
+        color: green;
+    }
+    80% {
+        color: blue;
+    }
+    100% {
+        color: violet;
+    }
+}
