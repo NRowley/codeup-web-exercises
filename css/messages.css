@@ -1,0 +1,45 @@
+:root {
+    --infoBG: #60a0ea;
+    --infoTX: #323281;
+    --successBG: #8cb68c;
+    --successTX: #337233;
+    --warningBG: #dcdc9c;
+    --warningTX: #6e6e18;
+    --errorBG: #ab7575;
+    --errorTX: #5e2424;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+.message-info, .message-success, .message-warning, .message-error {
+    margin: 10px;
+    padding: 10px;
+    border-style: solid;
+    border-color: lightgrey;
+    border-radius: 10px;
+}
+
+.message-info {
+    background: var(--infoBG);
+    color: var(--infoTX)
+}
+
+.message-success {
+    background: var(--successBG);
+    color: var(--successTX);
+}
+
+.message-warning {
+    background: var(--warningBG);
+    color: var(--warningTX);
+}
+
+.message-error {
+    background: var(--errorBG);
+    color: var(--errorTX);
+}

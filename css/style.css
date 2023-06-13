@@ -26,6 +26,7 @@ header {
     color: var(--burntorange);
     text-align: center;
     background-image: url("img/codeup_pride.png");
+    background-size: 10px;
     background-repeat: no-repeat;
     background-position: top left;
 }
