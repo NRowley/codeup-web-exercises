@@ -1,31 +1,71 @@
+/*css variables*/
+
+:root {
+    --burntorange: #d96911;
+    --orangeBG: rgba(210, 133, 72, 0.55);
+    --dustynavy: #212a56;
+    --valueBG: #2c3873;
+    --processBG: #3b4b9a;
+    --visionBG: #4a5ec0;
+    --linksky: #0057c9;
+    --linkskyhover: #1674f3;
+    --linkskyvisited: #7f9ed2;
+}
+
 h1.fancy-header {
-    color: darkorange;
+    color: var(--burntorange);
     text-decoration: underline;
     text-align: center;
     font-family: "Arial Black", serif;
+    text-transform: uppercase;
+    text-decoration-style: double;
+    text-decoration-color: var(--visionBG);
 }
+
 header {
-    color: darkorange;
+    color: var(--burntorange);
     text-align: center;
+    background-image: url("img/codeup_pride.png");
+    background-repeat: no-repeat;
+    background-position: top left;
 }
 
 h3 {
-    color: darkorange;
+    color: var(--burntorange);
     text-decoration: underline;
     text-align: center;
     font-family: "Arial Black", serif;
 }
+#veridian_info {
+    background: var(--orangeBG);
+}
+
+#core_values {
+    background: var(--valueBG);
+}
+
+#process {
+    background: var(--processBG);
+}
+
+#vision {
+    background: var(--visionBG);
+}
 
 body {
-    background-color: navy;
+    background-color: var(--dustynavy);
 }
 
 main {
-    background-image: url("img/codeup_pride.png");
-    background-repeat: no-repeat;
-    background-position: top right;
+    /*background-image: url("img/codeup_pride.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: top right;*/
     font-family: "Arial", serif;
     color: gray;
+}
+
+main h3 {
+    text-transform: uppercase;
 }
 
 ul {
@@ -36,6 +76,7 @@ footer {
     font-family: "Arial", serif;
     text-align: center;
 }
+
 #vision_img {
     display: block;
     margin-left: auto;
@@ -54,10 +95,12 @@ td {
     padding: 10px;
     text-align: center;
     font-size: 16px;
+    background: var(--processBG);
 }
 
 th {
-    color: darkorange;
+    color: var(--valueBG);
+    background: var(--orangeBG);
     text-decoration: underline;
     font-family: "Arial Black", serif;
     text-align: center;
@@ -65,15 +108,15 @@ th {
 }
 
 a:link {
-    color: royalblue;
+    color: var(--linksky);
 }
 
 a:visited {
-    color: grey;
+    color: var(--linkskyvisited);
 }
 
 a:hover {
-    color: darkcyan;
+    color: var(--linkskyhover);
 }
 
 #product {
