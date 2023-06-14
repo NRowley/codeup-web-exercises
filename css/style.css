@@ -105,7 +105,7 @@ h3 {
     background: var(--visionBG);
 }
 
-body {
+main {
     background-color: var(--dustynavy);
     margin-left: 20%;
     margin-right: 20%;
