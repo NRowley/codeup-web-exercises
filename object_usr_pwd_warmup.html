@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warmup JS Username password</title>
+</head>
+<body>
+<script>
+
+  // Write a function, returnUserObject, that takes in three String arguments: a username, password, and email. The function should return a user object with username, password and email properties.
+  // returnUserObject('jreich', 'password123', 'jreich@email.com') // returns...
+  // {
+  // username: 'jreich',
+  // password: 'password123',
+  // email: 'jreich@email.com'
+  // }
+  // Assume all inputs are non-empty strings. The order of the properties on the object output do not matter but the order of the INPUTS do matter.
+
+  // let userInfo = [{
+  //     username: "",
+  //     password: "",
+  //     email: "",
+  // }]
+
+  function returnUserObject(usr, pwd, em){
+      const userInfo = [{
+          username: "",
+          password: "",
+          email: "",
+      }]
+      userInfo.username = usr;
+      userInfo.password = pwd;
+      userInfo.email = em;
+      return userInfo;
+
+    // return `${usr} ${pwd} ${em};`
+  }
+
+  console.log(returnUserObject(prompt('Enter your username'), prompt('Enter your password'), prompt('Enter your email')));
+</script>
+</body>
+</html>

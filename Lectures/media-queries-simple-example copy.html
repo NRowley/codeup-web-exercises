@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Media Queries Lecture</title>
+    <style>
+        /* mobile */
+        #wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+        }
+        /* large mobile and bigger */
+        @media screen and (min-width: 768px) {
+            main {
+                flex-direction: row;
+                font-family: "Roboto", sans-serif;
+            }
+            .description {
+                flex-basis: 60%;
+            }
+            .list {
+                flex-basis: 40%;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <h1>Hello</h1>
+    </header>
+    <main>
+        <section class="description">
+            <h2>This is a Description</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda in laudantium libero non numquam
+                suscipit
+                veritatis. Ab accusamus, accusantium alias architecto atque esse ex fugit itaque, provident quis sequi
+                tenetur!</p>
+        </section>
+        <section class="list">
+            <h2>This is a List</h2>
+            <ul>
+                <li>one</li>
+                <li>two</li>
+                <li>three</li>
+                <li>four</li>
+                <li>five</li>
+            </ul>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
