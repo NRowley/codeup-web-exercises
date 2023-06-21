@@ -1,0 +1,36 @@
+.col-fluid.nr-hero {
+    min-height: 30vh;
+    background-image: url("img/pizza_hero.jpeg");
+    background-position: center top;
+    background-size: cover;
+}
+
+.navbar.container-fluid {
+    justify-content: unset;
+}
+
+a.signup {
+    margin-right: 1em;
+}
+
+a.navbar-brand {
+    margin-left: 1em;
+}
+
+div.nr-menu-header {
+    background-color: #0059ff;
+    color: white;
+}
+
+div.nr-next-btn {
+    justify-content: flex-end;
+    background-color: rgba(211, 211, 211, 0.22);
+}
+
+.col.nr-pizza-option-cards {
+    border: solid lightgray;
+    flex-direction: column;
+}
+
+
+

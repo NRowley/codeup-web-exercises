@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rowley - Bootstrap Pizza Exercise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+<nav class="navbar bg-body-tertiary p-0">
+    <div class="navbar d-flex w-80 gap-3">
+        <a class="navbar-brand">Pizza World</a>
+        <a href="">Order Online</a>
+        <a href="">Menu</a>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Zip Code" aria-label="Search">
+            <button type="button" class="btn btn-outline-primary text-nowrap">Search for stores near you!</button>
+        </form>
+        <i class="fa-regular fa-user-plus"></i>
+    </div>
+    <a class="signup" href=""><img src="css/img/signup_icon.png" width=25px alt="sign up">Sign Up!</a>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-fluid nr-hero d-flex align-items-center p-0">
+            <h1 class="w-100 text-center bg-light p-2 bg-opacity-50">Welcome to Pizza World!</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col p-0">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                            type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Size and Crust
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Cheese and Sauce
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Toppings
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                     tabindex="0">
+                    <div class="nr-menu-header container-fluid m-0 p-2">Choose Size and Crust</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col nr-pizza-option-cards p-4 d-flex gap-4">
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Hand Tossed
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Garlic Tossed with a Rich Buttery Crust</li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_hand_crust" name="hand_crusts" value="small">
+                                            <label for="small_hand_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_hand_crust" name="hand_crusts" value="small">
+                                            <label for="medium_hand_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_hand_crust" name="hand_crusts" value="small">
+                                            <label for="large_hand_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Crispy Thin Crust
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Thin enough for optimum crispy to crunchy ratio.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_thin_crust" name="thin_crusts" value="small">
+                                            <label for="small_thin_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_thin_crust" name="thin_crusts" value="small">
+                                            <label for="medium_thin_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_thin_crust" name="thin_crusts" value="small">
+                                            <label for="large_thin_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="nr-next-btn d-flex p-2">
+                                <button type="button" class="btn btn-primary text-nowrap">Next Step ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--CHEESE N SAUCE CHEESE N SAUCE CHEESE N SAUCE CHEESE N SAUCE-->
+                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                     tabindex="0">
+                    <div class="nr-menu-header container-fluid m-0 p-2">Choose Cheese and Sauce</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col nr-pizza-option-cards p-4 d-flex gap-4">
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Hand Tossed
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Garlic Tossed with a Rich Buttery Crust</li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_hand_crust" name="hand_crusts" value="small">
+                                            <label for="small_hand_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_hand_crust" name="hand_crusts" value="small">
+                                            <label for="medium_hand_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_hand_crust" name="hand_crusts" value="small">
+                                            <label for="large_hand_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Crispy Thin Crust
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Thin enough for optimum crispy to crunchy ratio.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_thin_crust" name="thin_crusts" value="small">
+                                            <label for="small_thin_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_thin_crust" name="thin_crusts" value="small">
+                                            <label for="medium_thin_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_thin_crust" name="thin_crusts" value="small">
+                                            <label for="large_thin_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+<!-- FIX THIS-->
+                            <div class="nr-next-btn d-flex p-2">
+                                <button type="button" class="btn btn-primary text-nowrap">Next Step ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!--TOPPINGS TOPPINGS TOPPINGS TOPPINGS-->
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                     tabindex="0">
+                    <div class="nr-menu-header container-fluid m-0 p-2">Choose Toppings</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col nr-pizza-option-cards p-4 d-flex gap-4">
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Hand Tossed
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Garlic Tossed with a Rich Buttery Crust</li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_hand_crust" name="hand_crusts" value="small">
+                                            <label for="small_hand_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_hand_crust" name="hand_crusts" value="small">
+                                            <label for="medium_hand_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_hand_crust" name="hand_crusts" value="small">
+                                            <label for="large_hand_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="card container-fluid m-0 w-100 p-2" style="width: 18rem;">
+                                    <div class="card-header">
+                                        Crispy Thin Crust
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Thin enough for optimum crispy to crunchy ratio.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="small_thin_crust" name="thin_crusts" value="small">
+                                            <label for="small_thin_crust">Small (10")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="medium_thin_crust" name="thin_crusts" value="small">
+                                            <label for="medium_thin_crust">Medium (14")</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="radio" id="large_thin_crust" name="thin_crusts" value="small">
+                                            <label for="large_thin_crust">Large (18")</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab"
+                     tabindex="0">...
+                </div>
+
+
+            </div>
+<!--            <div class="nr-next-btn d-flex p-2">-->
+<!--                <button type="button" class="btn btn-primary text-nowrap">Next Step ></button>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

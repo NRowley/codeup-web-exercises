@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // create a function, returnProduct, that takes in an array of numbers and returns the product of all the numbers.
+    //         Assume all element in the input array are valid numbers. Assume all array inputs have at least 1 number.
+    // returnProduct([1, 2, 3]) // returns 1 * 2 * 3 = 6
+    // returnProduct([3, 3, 3]) // returns 3 * 3 * 3 = 27
+    // returnProduct([4, 1, 2]) // returns 4 * 1 * 2 = 8
+    // returnProduct([4, 0, 2]) // returns 4 * 0 * 2 = 0
+    // returnProduct([5, 3, 2]) // returns 5 * 3 * 2 = 30
+    let threeNum1 = [1, 2, 3];
+    let threeNum2 = [3, 3, 3];
+    let threeNum3 = [4, 1, 2];
+
+    function returnProduct(array) {
+        let product = 1;
+        let productForEach = 1;
+        let productFor = 1;
+
+        for (let num of array) {
+            product *= num;
+        }
+
+        array.forEach((x) => {
+            productForEach *= x;
+        })
+
+        for (let i = 0; i < array.length; i++) {
+            productFor *= array[i];
+        }
+
+        return `${array[0]} x ${array[1]} x ${array[2]} = ${array[0] * array[1] * array[2]} / for loop: ${product} / forEach loop: ${productForEach} /  for loop: ${productFor}`;
+    }
+
+
+    console.log(returnProduct(threeNum1));
+    console.log(returnProduct(threeNum2));
+    console.log(returnProduct(threeNum3));
+
+
+</script>
+</body>
+</html>

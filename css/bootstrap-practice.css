@@ -1,0 +1,18 @@
+:root {
+    --borderColor: rgba(255, 106, 0, 0.83);
+    --linkColor: rgba(22, 116, 243, 0.64);
+}
+
+body {
+    border: solid;
+    border-color: var(--borderColor);
+}
+
+nav {
+    border: solid;
+    border-color: var(--borderColor);
+}
+
+a:hover {
+    color: var(--linkColor);
+}
