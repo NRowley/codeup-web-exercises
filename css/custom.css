@@ -21,7 +21,10 @@ div.nr-menu-header {
     background-color: #0059ff;
     color: white;
 }
-
+div.nr-previous-btn {
+    justify-content: flex-start;
+    background-color: rgba(211, 211, 211, 0.22);
+}
 div.nr-next-btn {
     justify-content: flex-end;
     background-color: rgba(211, 211, 211, 0.22);
@@ -30,6 +33,33 @@ div.nr-next-btn {
 .col.nr-pizza-option-cards {
     border: solid lightgray;
     flex-direction: column;
+}
+
+div.nr-next-btn {
+    justify-content: flex-end;
+    margin-bottom: 25px;
+    background-color: rgba(211, 211, 211, 0.22);
+}
+
+div.nr-btns {
+    justify-content: flex-end;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background-color: rgba(211, 211, 211, 0.22);
+}
+
+.nr-dropdown {
+    border: solid lightgray;
+    border-radius: 5px;
+    outline: none;
+}
+
+div.card.container-fluid {
+    padding: 0;
+}
+
+div.card-header {
+    padding-left: .7em;
 }
 
 
