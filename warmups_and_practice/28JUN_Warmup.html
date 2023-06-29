@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>28JUN Warmup</title>
+</head>
+<body>
+<script>
+  const users = [
+
+    {
+      username: 'fred123',
+      password: 'letmein',
+      email: 'fred123@email.com',
+      isAdmin: true
+    },
+    {
+      username: 'cindy123',
+      password: 'hello123',
+      email: 'cindy123@email.com',
+      isAdmin: false
+    },
+    {
+      username: 'kathy123',
+      password: 'letmein',
+      email: 'kathy123@email.com',
+      isAdmin: true
+    },
+    {
+      username: 'kyle123',
+      password: 'letmein',
+      email: 'kyle123@email.com',
+      isAdmin: false
+    }
+  ]
+
+  function isAdmin(users){
+    let admins = [];
+
+    for(let i = 0, a = 0; i < users.length; i++){
+      if(users[i].isAdmin){
+        admins.push(users[i]);
+      }
+    }
+    return admins;
+  }
+
+  console.log(isAdmin(users));
+
+
+</script>
+</body>
+</html>

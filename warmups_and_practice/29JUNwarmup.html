@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>29JUN warmup</title>
+</head>
+<body>
+Write a function that takes a neighborhood object and determines if it is desirable. A neighborhood is desirable.
+If the median home price is less than 300000, crime rates are low, and the total rating of schools is at least 24.
+The function should return true if the neighborhood object is desirable and false otherwise.
+
+<script>
+// example data...
+
+          const neighborhood1 = {
+    neighborhood: "Lovely Estates",
+    medianHomePrice: 280000,
+    pool: true,
+    tennis: false,
+    crimeRate: "low",
+    schools: 22
+  };
+
+  const neighborhood2 = {
+    neighborhood: "Luminous Estates",
+    medianHomePrice: 270000,
+    pool: true,
+    tennis: false,
+    crimeRate: "high",
+    schools: 24
+  }
+
+  const neighborhood3 = {
+    neighborhood: "Oak Mountain",
+    medianHomePrice: 290000,
+    pool: false,
+    tennis: false,
+    crimeRate: "low",
+    schools: 24
+  }
+
+  const neighborhood4 = {
+    neighborhood: "Ginormous Acres",
+    medianHomePrice: 350000,
+    pool: true,
+    tennis: true,
+    crimeRate: "low",
+    schools: 27
+  }
+
+  // function desire(nb) {
+  //   if (nb.medianHomePrice < 300000 && nb.crimeRate === "low" && nb.schools >= 24) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+//sometimes if statements aren't necessary when looking to return True/False.
+function desire(nb) {
+  return nb.medianHomePrice < 300000 && nb.crimeRate === "low" && nb.schools >= 24;
+}
+
+console.log(neighborhood1);
+console.log(neighborhood2);
+console.log(neighborhood3);
+console.log(neighborhood4);
+console.log(desire(neighborhood1));
+console.log(desire(neighborhood2));
+console.log(desire(neighborhood3));
+console.log(desire(neighborhood4));
+
+</script>
+</body>
+</html>
