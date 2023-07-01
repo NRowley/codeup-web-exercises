@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>30 JUN Warm Up</title>
+</head>
+<body>
+
+<script>
+    // rite a function, returnLargestStudentCount, that takes in an array of classes returns the number of students in the largest class.
+    // Assume at least one class object will be present in the input array with students property set to a valid positive integer.
+
+    let classes = [
+        {class: "6th grade history", students: 18},
+        {class: "7th grade history", students: 20},
+        {class: "8th grade history", students: 22},
+        {class: "4th grade history", students: 30},
+        {class: "10th grade history", students: 25}
+    ];
+
+    function returnLargestStudentCount(classes) {
+        let sortArr = [];
+        for (let i = 0; i < classes.length; i++) {
+            sortArr.push(classes[i].students);
+        }
+        sortArr.sort();
+        console.log(sortArr);
+        return sortArr[sortArr.length - 1];
+    }
+    console.log(returnLargestStudentCount(classes));
+</script>
+
+</body>
+</html>

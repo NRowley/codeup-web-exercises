@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/atb.css">
+    <title>Rowley ATB</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <main class="col">
+            <div class="info">
+                <h1>TITLE TBD</h1>
+                <p class="info-field" id="info-field"></p>
+            </div>
+            <div class="turn-status" id="turn-status">
+                <span class="player-turn-status" id="player-turn-status">PLAYER TURN</span>
+                <span class="enemy-turn-status" id="enemy-turn-status">ENEMY TURN</span>
+            </div>
+
+            <!--        ENEMIES-->
+            <div class="enemy-field" id="enemy-battlefield">
+                <div class="column nr-enemy" id="enemy">
+                </div>
+            </div>
+            <!--            PLAYER-->
+            <div class="player-field" id="player-battlefield">
+                <div class="column nr-player" id="player">
+
+                </div>
+            </div>
+            <div class="column nr-menu" id="player-menu">
+                <div>
+                    <button id="attack">(A) ATTACK</button>
+                </div>
+                <div>
+                    <button id="special">(S) SPECIAL</button>
+                </div>
+                <div>
+                    <button id="defend">(D) DEFEND</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // PLAYER AND ENEMY STATS
+        let player = {
+            id: 'player',
+            hp: 10,
+            sp: 2,
+            str: 10,
+            def: 0,
+            spd: 0,
+            special: {
+                1: false,
+                2: false,
+                3: false
+            }
+        };
+        let enemy = {
+            id: 'enemy',
+            hp: 100,
+            sp: 0,
+            str: 0,
+            def: 0,
+            spd: 0,
+            special: {
+                1: false,
+                2: false,
+                3: false
+            }
+        };
+        // GAME STATS
+        let gameOver = false;
+        let enemyAlive = true;
+
+        //GET VARIABLES FOR GAME OBJECTS
+        let playerIcon = document.getElementById('player');
+        let enemyIcon = document.getElementById('enemy');
+        let battleInfo = document.getElementById('info-field');
+        let playerTurnStatus = document.getElementById('player-turn-status');
+        let enemyTurnStatus = document.getElementById('enemy-turn-status');
+        let attackBtn = document.getElementById('attack');
+        let specialBtn = document.getElementById('special');
+        let defendBtn = document.getElementById('defend');
+        let battleControl = {
+            currentTurn: {
+                owner: player,
+                count: 0
+            }
+        }
+
+        function mainBattle(player, enemy) {
+            console.log(`current turn: ${battleControl.currentTurn.owner.id}`);
+
+            if (battleControl.currentTurn.owner !== player) {
+                //Enemies turn...
+                attackBtn.disabled = true;
+                attackBtn.style.backgroundColor = "unset";
+                console.log('ENEMY TURN');
+                return;
+            } else {
+                //Player turn
+                attackBtn.disabled = false;
+                attackBtn.style.backgroundColor = "white";
+                //Player Action tree
+                let damageCalculator = function (str) {
+                    return str + Math.floor(Math.random() * (5 - 1) + 1);
+                }
+                let playerAttack = function (event) {
+                    if (enemyAlive === true) {
+                        // Attack animation
+                        playerIcon.style.marginBottom = '100px';
+                        // calc player damage
+                        let dmgDealt = damageCalculator(player.str);
+                        // get info for current targeted enemy
+                        console.log(`current enemyhp: ${enemy.hp}`);
+                        enemy.hp -= dmgDealt;
+                        console.log(`enemyhp after dmgDealt: ${enemy.hp}`);
+                        battleInfo.innerHTML = `You Attack Enemy X!`;
+                        enemyIcon.style.animation = "damageAnim 0.5s infinite alternate";
+
+                        if (enemy.hp > 0) {
+                            setTimeout(function () {
+                                playerIcon.style.marginBottom = '50px';
+                                battleInfo.innerHTML = `You dealt ${dmgDealt} Damage to Enemy X!`;
+                                enemyIcon.style.animation = "unset";
+                                battleControl.currentTurn.owner = enemy;
+                                return;
+                            }, 1000);
+                        } else if (enemy.hp <= 0) {
+                            playerIcon.style.marginBottom = '50px';
+                            enemyIcon.style.backgroundColor = "unset";
+                            enemyIcon.style.animation = "unset";
+                            battleInfo.innerHTML = `You defeated Enemy X!`;
+                            enemyAlive = false;
+                            return;
+                        }
+                    } else if (enemyAlive === false) {
+                        battleInfo.innerHTML = `Enemies Defeated`;
+                        gameOver = true;
+                        return;
+                    }
+                }
+
+                //inputs
+                attackBtn.addEventListener('click', playerAttack);
+                document.addEventListener('keydown', (event) => {
+                    let keyCode = event.code;
+                    console.log(keyCode);
+                    if (keyCode === "KeyA") {
+                        playerAttack();
+                    }
+                    if (keyCode === "KeyS") {
+                    }
+                    if (keyCode === "KeyD") {
+                    }
+                })
+                return;
+            }
+        }
+        // TRY PROMPTS
+        mainBattle(player, enemy);
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM: Query and Modify</title>
+</head>
+<body>
+
+<h1 id="main-header">Hello World!</h1>
+<ul>
+    <li data-dbid="1">Item 1</li>
+    <li data-dbid="2">Item 2</li>
+    <li data-dbid="3">Item 3</li>
+    <li data-dbid="4">Item 4</li>
+    <li data-dbid="5">Item 5</li>
+</ul>
+<h2 id="sub-header">Hello Again.</h2>
+<p class="sub-paragraph">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+</p>
+<br>
+<button id="headerChangeBtn">Change Header</button>
+<button id="subHeaderColorBtn">Sub Header Color</button>
+<button id="liColorBtn">List Items Colors</button>
+<button id="missionBtn">Mission Accomplished</button>
+<h3>PRESS SPACE TO ACTIVATE DARKMODE, PRESS BACKSPACE TO REVERT</h3>
+
+<script>
+    // Add 4 buttons to the page. Attach click event listeners to each of the buttons and have the handlers perform the modifications that were automatically taking place. For example, the first button should set inner html of mainHeader to "JavaScript is Cool"
+    (function () {
+        "use strict";
+        // TODO: Uncomment next line and get the main header element by id
+        let mainHeader = document.getElementById('main-header');
+        console.log(mainHeader.innerHTML);
+
+        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        let headerChange = function (event) {
+            mainHeader.innerHTML = "JS is Cool"
+        };
+        document.getElementById("headerChangeBtn").addEventListener('click', headerChange);
+
+
+        // TODO: Uncomment the next line and get the sub header element by id
+        let subHeader = document.getElementById('sub-header');
+        console.log(subHeader.innerHTML);
+
+        // TODO: Set the text color of subHeader to blue
+        let subHeaderColor = function (event) {
+            subHeader.style.color = 'blue'
+        };
+        document.getElementById('subHeaderColorBtn').addEventListener('click', subHeaderColor);
+
+        // TODO: Uncomment the next line and get all list items
+        let listItems = document.getElementsByTagName("li");
+        console.log(listItems);
+
+        // TODO: Set text color on every other list item to grey
+        // TODO: Set text color of li with dbid = 1 to blue
+        console.log(listItems[0]);
+
+        let liColorChange = function (event) {
+            for (let i = 0; i < listItems.length; i++) {
+                if (listItems[i].getAttribute('data-dbid') % 2 === 0) {
+                    listItems[i].style.color = 'grey';
+                } else if (parseInt(listItems[i].getAttribute('data-dbid')) === 3) {
+                    listItems[i].style.color = 'blue';
+                }
+            }
+        }
+
+        document.getElementById('liColorBtn').addEventListener('click', liColorChange);
+
+        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+        let subParagraphs = document.getElementsByClassName('sub-paragraph');
+        console.log(subParagraphs);
+
+        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        let missionAccomplished = function (event) {
+            subParagraphs[0].innerHTML = 'MISSION ACCOMPLISHED'
+        };
+        document.getElementById('missionBtn').addEventListener('click', missionAccomplished);
+
+        // --------------Messing around-------------------
+
+
+        let body = document.getElementsByTagName('body');
+        console.log(body);
+        let changeBgBlack = function (event) {
+            body[0].style.backgroundColor = 'black';
+            body[0].style.color = 'white';
+        };
+        let changeBgDefault = function (event) {
+            body[0].style.backgroundColor = '';
+            body[0].style.color = 'black';
+        };
+        document.addEventListener('keydown', (event) => {
+            let name = event.key;
+            // console.log(name);
+            let code = event.code;
+            console.log(code);
+            let colorSet = 0;
+
+            if (code === "Space") {
+                console.log('DARKMODE');
+                changeBgBlack();
+                colorSet++;
+                console.log(colorSet);
+            } else if (code === "Backspace") {
+                console.log('UN-DARKMODE');
+                changeBgDefault();
+                colorSet++;
+                console.log(colorSet);
+            }
+        })
+    })();
+</script>
+
+</body>
+</html>
