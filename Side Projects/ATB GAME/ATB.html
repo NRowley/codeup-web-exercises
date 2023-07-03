@@ -9,162 +9,149 @@
     <title>Rowley ATB</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <main class="col">
-            <div class="info">
-                <h1>TITLE TBD</h1>
-                <p class="info-field" id="info-field"></p>
+<div class="page-wrapper">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col nr-start-menu">
+                    <button id="start-btn">START</button>
+                    <button id="menu-btn">MENU/PAUSE</button>
+                </div>
             </div>
-            <div class="turn-status" id="turn-status">
-                <span class="player-turn-status" id="player-turn-status">PLAYER TURN</span>
-                <span class="enemy-turn-status" id="enemy-turn-status">ENEMY TURN</span>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p id="info-field"></p>
+                </div>
+                <div class="col">
+                    <ul class="enemies" id="enemies">
+                        <li class="enemy-icon" id="enemy-4"></li>
+                        <li class="enemy-icon" id="enemy-2"></li>
+                        <li class="enemy-icon" id="enemy-1"></li>
+                        <li class="enemy-icon" id="enemy-3"></li>
+                        <li class="enemy-icon" id="enemy-5"></li>
+                    </ul>
+                </div>
             </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <button id="attack-btn">ATTACK</button>
+                </div>
+                <div class="menu-area" id="menu-area">
+                    <p>INSTRUCTIONS/MENU/SETTINGS/ETC</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
-            <!--        ENEMIES-->
-            <div class="enemy-field" id="enemy-battlefield">
-                <div class="column nr-enemy" id="enemy">
-                </div>
-            </div>
-            <!--            PLAYER-->
-            <div class="player-field" id="player-battlefield">
-                <div class="column nr-player" id="player">
-
-                </div>
-            </div>
-            <div class="column nr-menu" id="player-menu">
-                <div>
-                    <button id="attack">(A) ATTACK</button>
-                </div>
-                <div>
-                    <button id="special">(S) SPECIAL</button>
-                </div>
-                <div>
-                    <button id="defend">(D) DEFEND</button>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // PLAYER AND ENEMY STATS
-        let player = {
-            id: 'player',
+<script>
+    // PLAYER AND ENEMY OBJECTS
+    let player = {
+        id: 'player',
+        stats: {
             hp: 10,
             sp: 2,
-            str: 10,
-            def: 0,
-            spd: 0,
-            special: {
-                1: false,
-                2: false,
-                3: false
-            }
-        };
-        let enemy = {
-            id: 'enemy',
-            hp: 100,
-            sp: 0,
             str: 0,
             def: 0,
             spd: 0,
-            special: {
-                1: false,
-                2: false,
-                3: false
-            }
-        };
-        // GAME STATS
-        let gameOver = false;
-        let enemyAlive = true;
-
-        //GET VARIABLES FOR GAME OBJECTS
-        let playerIcon = document.getElementById('player');
-        let enemyIcon = document.getElementById('enemy');
-        let battleInfo = document.getElementById('info-field');
-        let playerTurnStatus = document.getElementById('player-turn-status');
-        let enemyTurnStatus = document.getElementById('enemy-turn-status');
-        let attackBtn = document.getElementById('attack');
-        let specialBtn = document.getElementById('special');
-        let defendBtn = document.getElementById('defend');
-        let battleControl = {
-            currentTurn: {
-                owner: player,
-                count: 0
-            }
+            luck: 0,
+        },
+        actions: {
+            maxActions: 3,
+            currentActions: 0,
         }
-
-        function mainBattle(player, enemy) {
-            console.log(`current turn: ${battleControl.currentTurn.owner.id}`);
-
-            if (battleControl.currentTurn.owner !== player) {
-                //Enemies turn...
-                attackBtn.disabled = true;
-                attackBtn.style.backgroundColor = "unset";
-                console.log('ENEMY TURN');
-                return;
-            } else {
-                //Player turn
-                attackBtn.disabled = false;
-                attackBtn.style.backgroundColor = "white";
-                //Player Action tree
-                let damageCalculator = function (str) {
-                    return str + Math.floor(Math.random() * (5 - 1) + 1);
-                }
-                let playerAttack = function (event) {
-                    if (enemyAlive === true) {
-                        // Attack animation
-                        playerIcon.style.marginBottom = '100px';
-                        // calc player damage
-                        let dmgDealt = damageCalculator(player.str);
-                        // get info for current targeted enemy
-                        console.log(`current enemyhp: ${enemy.hp}`);
-                        enemy.hp -= dmgDealt;
-                        console.log(`enemyhp after dmgDealt: ${enemy.hp}`);
-                        battleInfo.innerHTML = `You Attack Enemy X!`;
-                        enemyIcon.style.animation = "damageAnim 0.5s infinite alternate";
-
-                        if (enemy.hp > 0) {
-                            setTimeout(function () {
-                                playerIcon.style.marginBottom = '50px';
-                                battleInfo.innerHTML = `You dealt ${dmgDealt} Damage to Enemy X!`;
-                                enemyIcon.style.animation = "unset";
-                                battleControl.currentTurn.owner = enemy;
-                                return;
-                            }, 1000);
-                        } else if (enemy.hp <= 0) {
-                            playerIcon.style.marginBottom = '50px';
-                            enemyIcon.style.backgroundColor = "unset";
-                            enemyIcon.style.animation = "unset";
-                            battleInfo.innerHTML = `You defeated Enemy X!`;
-                            enemyAlive = false;
-                            return;
-                        }
-                    } else if (enemyAlive === false) {
-                        battleInfo.innerHTML = `Enemies Defeated`;
-                        gameOver = true;
-                        return;
-                    }
-                }
-
-                //inputs
-                attackBtn.addEventListener('click', playerAttack);
-                document.addEventListener('keydown', (event) => {
-                    let keyCode = event.code;
-                    console.log(keyCode);
-                    if (keyCode === "KeyA") {
-                        playerAttack();
-                    }
-                    if (keyCode === "KeyS") {
-                    }
-                    if (keyCode === "KeyD") {
-                    }
-                })
-                return;
-            }
+    };
+    let enemy = {
+        id: 'enemy',
+        stats: {
+            hp: 10,
+            sp: 2,
+            str: 0,
+            def: 0,
+            spd: 0,
+            luck: 0,
+        },
+        actions: {
+            maxActions: 3,
+            currentActions: 0,
         }
-        // TRY PROMPTS
-        mainBattle(player, enemy);
-    </script>
+    };
+
+    //GET VARIABLES FOR GAME OBJECTS
+    let startBtn = document.getElementById('start-btn');
+    let menuBtn = document.getElementById('menu-btn');
+    let attackBtn = document.getElementById('attack-btn');
+    attackBtn.disabled = true;
+
+    //GAME VARIABLES
+    let playerActionGaugeId;
+
+    //Functions
+    let damageCalculator = function (attackerStr, targetDef) {
+        let damage = (attackerStr + Math.floor(Math.random() * (6 - 1) + 1)) - targetDef;
+        if (damage < 0) {
+            return 0;
+        } else {
+            return damage;
+        }
+    }
+    let playerAttack = function () {
+        console.log('player attack');
+        player.actions.currentActions--;
+        console.log(`Action Used. Actions remaining: ${player.actions.currentActions}`);
+        if (playerActionGaugeId === null) {
+            playerActionGaugeId = setInterval(playerActionGauge, 2000 - (player.stats.spd * 10));
+        }
+        if (player.actions.currentActions === 0) {
+            attackBtn.disabled = true;
+        }
+    };
+    function playerActionGauge() {
+        if (player.actions.currentActions < player.actions.maxActions) {
+            player.actions.currentActions++;
+            console.log(`Player Actions: ${player.actions.currentActions}, Player Maximum Actions: ${player.actions.maxActions}`);
+            attackBtn.disabled = false;
+        } else if (player.actions.currentActions === player.actions.maxActions) {
+            clearInterval(playerActionGaugeId);
+            playerActionGaugeId = null;
+        }
+    }
+    function startGame() {
+        playerActionGaugeId = setInterval(playerActionGauge, 2000 - (player.stats.spd * 10));
+        startBtn.disabled = true;
+        if(player.actions.currentActions > 0){
+            attackBtn.disabled = false;
+        }
+        console.log(`GAME START/RESUMED`)
+    }
+    function pauseGame() {
+        clearInterval(playerActionGaugeId);
+        playerActionGaugeId = null;
+        startBtn.disabled = false;
+        attackBtn.disabled = true;
+        console.log(`GAME PAUSED`)
+    }
+    //Event Listeners and Inputs
+    //click events
+    attackBtn.addEventListener('click', playerAttack);
+    startBtn.addEventListener('click', startGame);
+    menuBtn.addEventListener('click', pauseGame)
+    //keyboard events
+    document.addEventListener('keydown', (event) => {
+        let keyCode = event.code;
+        console.log(keyCode);
+        if (keyCode === "KeyA") {
+            playerAttack();
+        }
+    })
+</script>
 </body>
 </html>
