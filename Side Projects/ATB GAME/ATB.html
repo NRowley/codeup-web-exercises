@@ -24,12 +24,11 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p id="info-field"></p>
+                    <p id="info-field-row-1"></p>
+                    <p id="info-field-row-2"></p>
                 </div>
-                <div class="col enemies">
-                    <ul class="enemies" id="enemies">
-                        <li class="enemy-icon" id="enemy"></li>
-                    </ul>
+                <div class="col enemies" id="enemy-area">
+                    <span class="enemy-icon" id="enemy"></span>
                 </div>
             </div>
         </div>
@@ -38,6 +37,25 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+                    <div class="gauge-area">
+                        <span class="player-hp-bar" id="player-hp-bar">
+                        <span class="player-hp-bar-fill" id="player-hp-bar-fill"></span>
+                        </span>
+                        <span class="current-player-hp" id="current-player-hp">HP: 0</span>
+                    </div>
+                    <div class="gauge-area">
+                        <span class="player-sp-bar" id="player-sp-bar">
+                        <span class="player-sp-bar-fill" id="player-sp-bar-fill"></span>
+                        </span>
+                        <span class="current-player-sp" id="current-player-sp">HP: 0</span>
+                    </div>
+                    <div class="gauge-area">
+                        <span class="player-action-gauge" id="player-action-gauge">
+                        <span class="player-action-gauge-fill" id="player-action-gauge-fill"></span>
+                        </span>
+                        <span class="current-player-actions" id="current-player-actions">ACTIONS: 0</span>
+                    </div>
+                    <br>
                     <button id="attack-btn">ATTACK</button>
                 </div>
                 <div class="menu-area" id="menu-area">
@@ -52,9 +70,12 @@
     // PLAYER AND ENEMY OBJECTS
     let player = {
         id: 'player',
+        statPoints: 0,
         stats: {
-            hp: 10,
-            sp: 2,
+            maxHp: 10,
+            currentHp: 10,
+            maxSp: 2,
+            currentSp: 2,
             str: 0,
             def: 0,
             spd: 0,
@@ -68,7 +89,21 @@
     let enemyList = [
         {},
         {
-            id: 'str-grunt',
+            id: 'bln',
+            stats: {
+                hp: 10,
+                str: 1,
+                def: 1,
+                spd: 1,
+                luck: 0
+            },
+            actions: {
+                maxActions: 1,
+                currentActions: 0
+            }
+        },
+        {
+            id: 'str',
             stats: {
                 hp: 10,
                 str: 2,
@@ -82,7 +117,7 @@
             }
         },
         {
-            id: 'def-grunt',
+            id: 'def',
             stats: {
                 hp: 10,
                 str: 0,
@@ -96,7 +131,7 @@
             }
         },
         {
-            id: 'spd-grunt',
+            id: 'spd',
             stats: {
                 hp: 10,
                 str: 0,
@@ -112,22 +147,35 @@
     ];
 
     //GET VARIABLES FOR GAME OBJECTS
+    let playerHpBarFill = document.getElementById('player-hp-bar-fill');
+    let playerCurrentHp = document.getElementById('current-player-hp');
+    let playerSpBarFill = document.getElementById('player-sp-bar-fill');
+    let playerCurrentSp = document.getElementById('current-player-sp');
+    let playerActionGaugeFill = document.getElementById('player-action-gauge-fill');
+    let currentPlayerActionsDisplay = document.getElementById('current-player-actions');
     let startBtn = document.getElementById('start-btn');
     let menuBtn = document.getElementById('menu-btn');
     let attackBtn = document.getElementById('attack-btn');
     let enemyIcon = document.getElementById('enemy');
+    let infoFieldRow1 = document.getElementById('info-field-row-1');
+    let infoFieldRow2 = document.getElementById('info-field-row-2');
 
-    let enemy;
-    attackBtn.disabled = true;
-
-    //GAME VARIABLES
+    //GAME VARIABLES AND INITIAL SETTINGS
+    let enemy = undefined;
     let playerActionGaugeId;
+    let playerActionBar = 0;
+    let enemyPresent = false;
+    attackBtn.disabled = true;
+    enemyIcon.style.display = 'none';
+    playerCurrentHp.innerHTML = `HP: ${player.stats.currentHp} / ${player.stats.maxHp}`;
+    playerHpBarFill.style.width = `${(player.stats.currentHp/player.stats.maxHp) * 100}%`;
+    playerCurrentSp.innerHTML = `SP: ${player.stats.currentSp} / ${player.stats.maxSp}`;
 
     //Functions
     let damageCalculator = function (attackerStr, targetDef) {
-        let damage = (attackerStr + Math.floor(Math.random() * (6 - 1) + 1)) - targetDef;
-        if (damage < 0) {
-            return 0;
+        let damage = (attackerStr + Math.floor(Math.random() * (4 - 1) + 1)) - targetDef;
+        if (damage <= 0) {
+            return 1;
         } else {
             return damage;
         }
@@ -135,9 +183,16 @@
     let playerAttack = function () {
         console.log('player attack');
         player.actions.currentActions--;
+        currentPlayerActionsDisplay.innerHTML = `ACTIONS: ${player.actions.currentActions}`;
         console.log(`Action Used. Actions remaining: ${player.actions.currentActions}`);
+
+        let damage = damageCalculator(player.stats.str, enemy.stats.def);
+        enemy.stats.hp = enemy.stats.hp - damage;
+        console.log(enemy.stats.hp);
+        infoFieldRow1.innerHTML = `You Dealt ${damage} damage to the Enemy!`;
+
         if (playerActionGaugeId === null) {
-            playerActionGaugeId = setInterval(playerActionGauge, 2000 - (player.stats.spd * 10));
+            playerActionGaugeId = setInterval(playerActionGauge, 50);
         }
         if (player.actions.currentActions === 0) {
             attackBtn.disabled = true;
@@ -146,9 +201,15 @@
 
     function playerActionGauge() {
         if (player.actions.currentActions < player.actions.maxActions) {
-            player.actions.currentActions++;
-            console.log(`Player Actions: ${player.actions.currentActions}, Player Maximum Actions: ${player.actions.maxActions}`);
-            attackBtn.disabled = false;
+            playerActionBar = (playerActionBar + 1) + (player.stats.spd);
+            playerActionGaugeFill.style.width = `${playerActionBar}px`;
+            if(playerActionBar >= 100){
+                playerActionBar = 0;
+                player.actions.currentActions++;
+                currentPlayerActionsDisplay.innerHTML = `ACTIONS: ${player.actions.currentActions}`;
+                console.log(`Player Actions: ${player.actions.currentActions}, Player Maximum Actions: ${player.actions.maxActions}`);
+                attackBtn.disabled = false;
+            }
         } else if (player.actions.currentActions === player.actions.maxActions) {
             clearInterval(playerActionGaugeId);
             playerActionGaugeId = null;
@@ -156,8 +217,10 @@
     }
 
     function startGame() {
-        playerActionGaugeId = setInterval(playerActionGauge, 2000 - (player.stats.spd * 10));
-        enemySpawn();
+        playerActionGaugeId = setInterval(playerActionGauge, 50);
+        if (enemyPresent === false) {
+            enemySpawn();
+        }
         startBtn.disabled = true;
         if (player.actions.currentActions > 0) {
             attackBtn.disabled = false;
@@ -174,16 +237,12 @@
     }
 
     function enemySpawn() {
+        enemyPresent = true;
         let enemyType = Math.floor(Math.random() * (enemyList.length - 2 + 1) + 1);
         console.log(`enemy type number: ${enemyType}`);
-        if (enemyType === 1) {
-            enemy = enemyList[enemyType];
-        } else if (enemyType === 2) {
-            enemy = enemyList[enemyType];
-        } else if (enemyType === 3) {
-            enemy = enemyList[enemyType];
-        }
-        enemyIcon.display = 'block';
+        enemyIcon.style.backgroundColor = `var(--enemy${enemyType})`;
+        enemy = enemyList[enemyType];
+        enemyIcon.style.display = 'flex';
         enemyIcon.innerHTML = enemy.id;
         console.log(enemy);
     }

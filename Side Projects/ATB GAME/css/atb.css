@@ -1,3 +1,10 @@
+:root {
+    --enemy1: #4d4d4d;
+    --enemy2: #9b1e1e;
+    --enemy3: #8561cc;
+    --enemy4: #966834;
+}
+
 body {
     background-color: grey;
 }
@@ -7,9 +14,14 @@ body {
     margin-right: 10%;
 }
 
-#info-field {
+#info-field-row-1 {
     width: 100%;
-    height: 100px;
+    height: 50px;
+    background-color: white;
+}
+#info-field-row-2 {
+    width: 100%;
+    height: 50px;
     background-color: white;
 }
 
@@ -26,28 +38,102 @@ body {
     margin-top: 20px;
 }
 
-/*ENEMY STYLE SETTINGS*/
 .enemies {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-evenly;
-    list-style: none;
-    padding-left: 0px;
+    background-color: black;
+    height: 300px;
+    margin-bottom: 10px;
 }
 
 .enemy-icon {
     display: flex;
-    background-color: red;
+    background-color: unset;
+    border: solid white;
+    justify-content: center;
     align-items: center;
     color: white;
     height: 50px;
-    width: auto;
+    width: 100px;
     font-size: 20px;
-    border: solid black;
 }
 
 .enemies {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+.gauge-area{
+    display: flex;
+    flex-direction: row;
+    border: solid black;
+    width: 250px;
+}
+
+.player-action-gauge {
+    display: flex;
+    align-content: center;
+    width: 100px;
+    height: 20px;
+    border: solid white;
+}
+
+.player-action-gauge-fill {
+    display: flex;
+    align-self: center;
+    width: 0px;
+    height: 15px;
+    background-color: orangered;
+}
+
+.current-player-actions {
+    display: flex;
+    align-self: center;
+    padding-left: 5px;
+}
+
+.player-hp-bar {
+    display: flex;
+    align-content: center;
+    width: 100px;
+    height: 20px;
+    border: solid white;
+}
+
+.player-hp-bar-fill {
+    display: flex;
+    align-self: center;
+    width: 0%;
+    height: 15px;
+    background-color: #d25959;
+}
+
+.current-player-hp {
+    display: flex;
+    align-self: center;
+    padding-left: 5px;
+}
+
+.player-sp-bar {
+    display: flex;
+    align-content: center;
+    width: 100px;
+    height: 20px;
+    border: solid white;
+}
+
+.player-sp-bar-fill {
+    display: flex;
+    align-self: center;
+    width: 0%;
+    height: 15px;
+    background-color: royalblue;
+}
+
+.current-player-sp {
+    display: flex;
+    align-self: center;
+    padding-left: 5px;
 }
