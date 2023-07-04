@@ -26,13 +26,9 @@
                 <div class="col">
                     <p id="info-field"></p>
                 </div>
-                <div class="col">
+                <div class="col enemies">
                     <ul class="enemies" id="enemies">
-                        <li class="enemy-icon" id="enemy-4"></li>
-                        <li class="enemy-icon" id="enemy-2"></li>
-                        <li class="enemy-icon" id="enemy-1"></li>
-                        <li class="enemy-icon" id="enemy-3"></li>
-                        <li class="enemy-icon" id="enemy-5"></li>
+                        <li class="enemy-icon" id="enemy"></li>
                     </ul>
                 </div>
             </div>
@@ -69,26 +65,59 @@
             currentActions: 0,
         }
     };
-    let enemy = {
-        id: 'enemy',
-        stats: {
-            hp: 10,
-            sp: 2,
-            str: 0,
-            def: 0,
-            spd: 0,
-            luck: 0,
+    let enemyList = [
+        {},
+        {
+            id: 'str-grunt',
+            stats: {
+                hp: 10,
+                str: 2,
+                def: 0,
+                spd: 0,
+                luck: 0
+            },
+            actions: {
+                maxActions: 1,
+                currentActions: 0
+            }
         },
-        actions: {
-            maxActions: 3,
-            currentActions: 0,
+        {
+            id: 'def-grunt',
+            stats: {
+                hp: 10,
+                str: 0,
+                def: 2,
+                spd: 0,
+                luck: 0
+            },
+            actions: {
+                maxActions: 1,
+                currentActions: 0
+            }
+        },
+        {
+            id: 'spd-grunt',
+            stats: {
+                hp: 10,
+                str: 0,
+                def: 2,
+                spd: 0,
+                luck: 0
+            },
+            actions: {
+                maxActions: 1,
+                currentActions: 0
+            }
         }
-    };
+    ];
 
     //GET VARIABLES FOR GAME OBJECTS
     let startBtn = document.getElementById('start-btn');
     let menuBtn = document.getElementById('menu-btn');
     let attackBtn = document.getElementById('attack-btn');
+    let enemyIcon = document.getElementById('enemy');
+
+    let enemy;
     attackBtn.disabled = true;
 
     //GAME VARIABLES
@@ -114,6 +143,7 @@
             attackBtn.disabled = true;
         }
     };
+
     function playerActionGauge() {
         if (player.actions.currentActions < player.actions.maxActions) {
             player.actions.currentActions++;
@@ -124,14 +154,17 @@
             playerActionGaugeId = null;
         }
     }
+
     function startGame() {
         playerActionGaugeId = setInterval(playerActionGauge, 2000 - (player.stats.spd * 10));
+        enemySpawn();
         startBtn.disabled = true;
-        if(player.actions.currentActions > 0){
+        if (player.actions.currentActions > 0) {
             attackBtn.disabled = false;
         }
         console.log(`GAME START/RESUMED`)
     }
+
     function pauseGame() {
         clearInterval(playerActionGaugeId);
         playerActionGaugeId = null;
@@ -139,6 +172,22 @@
         attackBtn.disabled = true;
         console.log(`GAME PAUSED`)
     }
+
+    function enemySpawn() {
+        let enemyType = Math.floor(Math.random() * (enemyList.length - 2 + 1) + 1);
+        console.log(`enemy type number: ${enemyType}`);
+        if (enemyType === 1) {
+            enemy = enemyList[enemyType];
+        } else if (enemyType === 2) {
+            enemy = enemyList[enemyType];
+        } else if (enemyType === 3) {
+            enemy = enemyList[enemyType];
+        }
+        enemyIcon.display = 'block';
+        enemyIcon.innerHTML = enemy.id;
+        console.log(enemy);
+    }
+
     //Event Listeners and Inputs
     //click events
     attackBtn.addEventListener('click', playerAttack);

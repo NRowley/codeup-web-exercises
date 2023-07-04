@@ -25,3 +25,29 @@ body {
     background-color: lightgray;
     margin-top: 20px;
 }
+
+/*ENEMY STYLE SETTINGS*/
+.enemies {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.enemy-icon {
+    display: flex;
+    background-color: red;
+    align-items: center;
+    color: white;
+    height: 50px;
+    width: auto;
+    font-size: 20px;
+    border: solid black;
+}
+
+.enemies {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
