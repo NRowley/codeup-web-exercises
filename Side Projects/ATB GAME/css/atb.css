@@ -84,8 +84,10 @@ body {
     display: flex;
     align-self: center;
     width: 0px;
-    height: 15px;
-    background-color: orangered;
+    height: 8px;
+    background-color: #ff7300;
+    border-top: solid 3px orangered;
+    border-bottom: solid 3px orangered;
 }
 
 .current-player-actions {
@@ -106,8 +108,10 @@ body {
     display: flex;
     align-self: center;
     width: 0%;
-    height: 15px;
-    background-color: #d25959;
+    height: 8px;
+    background-color: #ff3030;
+    border-top: solid 3px #d25959;
+    border-bottom: solid 3px #d25959;
 }
 
 .current-player-hp {
@@ -128,8 +132,10 @@ body {
     display: flex;
     align-self: center;
     width: 0%;
-    height: 15px;
+    height: 8px;
     background-color: royalblue;
+    border-top: solid 3px #6c8fee;
+    border-bottom: solid 3px #6c8fee;
 }
 
 .current-player-sp {

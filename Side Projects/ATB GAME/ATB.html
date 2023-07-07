@@ -53,7 +53,7 @@
                         <span class="player-action-gauge" id="player-action-gauge">
                         <span class="player-action-gauge-fill" id="player-action-gauge-fill"></span>
                         </span>
-                        <span class="current-player-actions" id="current-player-actions">ACTIONS: 0</span>
+                        <span class="current-player-actions" id="current-player-actions">AP: 0</span>
                     </div>
                     <br>
                     <button id="attack-btn">ATTACK</button>
@@ -170,6 +170,8 @@
     playerCurrentHp.innerHTML = `HP: ${player.stats.currentHp} / ${player.stats.maxHp}`;
     playerHpBarFill.style.width = `${(player.stats.currentHp/player.stats.maxHp) * 100}%`;
     playerCurrentSp.innerHTML = `SP: ${player.stats.currentSp} / ${player.stats.maxSp}`;
+    playerSpBarFill.style.width = `${(player.stats.currentSp/player.stats.maxSp) * 100}%`;
+    currentPlayerActionsDisplay.innerHTML = `AP: ${player.actions.currentActions} / ${player.actions.maxActions}`;
 
     //Functions
     let damageCalculator = function (attackerStr, targetDef) {
@@ -183,7 +185,7 @@
     let playerAttack = function () {
         console.log('player attack');
         player.actions.currentActions--;
-        currentPlayerActionsDisplay.innerHTML = `ACTIONS: ${player.actions.currentActions}`;
+        currentPlayerActionsDisplay.innerHTML = `AP: ${player.actions.currentActions} / ${player.actions.maxActions}`
         console.log(`Action Used. Actions remaining: ${player.actions.currentActions}`);
 
         let damage = damageCalculator(player.stats.str, enemy.stats.def);
@@ -206,7 +208,7 @@
             if(playerActionBar >= 100){
                 playerActionBar = 0;
                 player.actions.currentActions++;
-                currentPlayerActionsDisplay.innerHTML = `ACTIONS: ${player.actions.currentActions}`;
+                currentPlayerActionsDisplay.innerHTML = `AP: ${player.actions.currentActions} / ${player.actions.maxActions}`
                 console.log(`Player Actions: ${player.actions.currentActions}, Player Maximum Actions: ${player.actions.maxActions}`);
                 attackBtn.disabled = false;
             }

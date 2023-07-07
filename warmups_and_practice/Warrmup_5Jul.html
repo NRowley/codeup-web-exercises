@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warmup 5JUL</title>
+</head>
+<body>
+<input type="button" id="add" value="ADD TO ARRAY"></button>
+<input type="button" id="clear" value="CLEAR ARRAY"></button>
+<input type="button" id="log" value="LOG ARRAY"></button>
+<input type="button" id="save" value="SAVE ARRAY"></button>
+<script>
+    // 1. Create a function that prints 1 to 100.
+    //
+    //
+    // 2. Create a function, fizzBuzz, that prints out all numbers from 1 to 100 but instead of printing
+    // numbers that are evenly divisible by 3, print 'fizz' and any numbers evenly divisible
+    // by 5, print 'buzz'. For any numbers that are evenly divisible by 3 AND 5, print 'fizzbuzz'.
+
+    let objects = [
+        {id: 1},
+    ]
+    objects = JSON.parse(localStorage.getItem('objects'));
+
+    console.log(objects);
+
+    function saveObjects() {
+        localStorage.setItem('objects', JSON.stringify(objects));
+    };
+
+    function addToObjects() {
+        let i = objects.length + 1;
+        let newObject = {id: i + 1};
+        objects.push(newObject);
+        localStorage.setItem('objects', JSON.stringify(objects));
+        console.log(objects);
+    }
+
+    function clearObjects() {
+        console.log('clearing storage')
+        localStorage.clear();
+        objects = [];
+    }
+
+    function logObjects() {
+        console.log(objects);
+    }
+
+    let addBtn = document.getElementById('add');
+    let clearBtn = document.getElementById('clear');
+    let logBtn = document.getElementById('log');
+    let saveBtn = document.getElementById('save');
+
+    addBtn.addEventListener('click', addToObjects);
+    clearBtn.addEventListener('click', clearObjects);
+    logBtn.addEventListener('click', logObjects);
+    saveBtn.addEventListener('click', saveObjects);
+
+
+</script>
+</body>
+</html>
