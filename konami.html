@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rowley - Konami Code</title>
+    <link rel="stylesheet" href="css/konami-code.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <header class="col header">
+            <div class="game-title" id="game-title">
+                <h1>Konami Code</h1>
+            </div>
+            <div class="lives-container">
+                <span class="lives-row" id="lives">
+                    <span class="heart">&#10084;</span>
+                    <span class="heart">&#10084;</span>
+                    <span class="heart">&#10084;</span>
+                </span>
+            </div>
+        </header>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row game-column">
+        <div class="start-button">
+            <button class="start" id="start">START</button>
+        </div>
+        <div class="game-row">
+            <div class="col game-area">
+                <!--Game prompts here-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <footer class="column">
+            <h2>Manual</h2>
+            <p>Press "SPACE" to Start the Game</p>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/konami.js"></script>
+</body>
+</html>
