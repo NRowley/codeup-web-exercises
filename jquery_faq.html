@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rowley jquery faq</title>
+    <link rel="stylesheet" href="css/jquery_faq.css">
+</head>
+<body>
+<h1>National Park FAQs</h1>
+<dl>
+    <dt>What are National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>Where are National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>Why are there National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>Who manages are National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>How are National Parks established?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>When are National Parks open?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>What animals live in National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>Are National Parks free to visit?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>How do you get a job at National Parks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+
+    <dt>How many National Parks are there?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+    <button class="visibility-btn" id="visibility-btn">Show FAQs</button>
+</dl>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    "use strict"
+    // $('#visibility-btn').on('click', function () {
+    //     console.log('btn click');
+    //     $('dd').toggleClass('invisible');
+    // });
+
+    //Bonus 1 color the clicked dt
+    // $('dt').on('click', (e) => {
+    //     console.log('dt click');
+    //     $(e.target).toggleClass('dt-highlight');
+    // });
+
+
+    //Bonus 2 do JS Versions
+    let visiBtn = document.getElementById('visibility-btn');
+    let ddVisi = document.querySelectorAll('.invisible');
+    let dtNode = document.querySelectorAll('dt');
+    console.log(dtNode);
+
+    //JS dd visibility
+    visiBtn.addEventListener('click', () => {
+        console.log('btn click')
+        let i = 0;
+        // for (let i = 0; i < ddVisi.length; i++) {
+        //     ddVisi[i].classList.toggle('invisible');
+        // }
+        ddVisi.forEach(() => (ddVisi[i].classList.toggle('invisible'), i++));
+    });
+
+    //JS dt highlighter
+    document.addEventListener('click', (event) => {
+        let dtClicked = event.target;
+        console.log(dtClicked);
+        if (dtClicked.localName === "dt") {
+            dtClicked.classList.toggle('dt-highlight');
+        }
+    });
+
+</script>
+</body>
+</html>

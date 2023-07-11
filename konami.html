@@ -43,6 +43,7 @@
         <footer class="column">
             <h2>Manual</h2>
             <p>Press "SPACE" to Start the Game</p>
+            <p>Get 3 Successes to win!</p>
         </footer>
     </div>
 </div>
@@ -57,6 +58,7 @@
         console.log(event.keyCode);
         konamiCodeInput.push(event.keyCode);
         console.log(`Code Input: ${konamiCodeInput}`);
+        //For game play/matching inputs
         if (game.start) {
             let input;
             if (event.keyCode === 38) {
@@ -70,10 +72,15 @@
             }
             if (input === iconDirections[inputGenerator()]) {
                 $('.game-icon').css('background-color', 'blue');
-                game.success = true;
+                $('.game-icon').html("SUCCESS");
+                game.hits++;
+                if(game.hits === 3){
+                    game.success = true;
+                }
             }
 
         } else if (!game.start) {
+            //For Konami code Exercise!----------------------
             let i = 0;
             if (konamiCodeInput[i] != konamiCode[i]) {
                 konamiCodeInput = [];
@@ -81,7 +88,9 @@
                 alert(`Success! Extra-lives +30!`);
                 addHearts();
             }
+            //"Start" button for game
             if (event.keyCode === 32) {
+                //Press "SPACE" to start the game
                 game.start = true;
                 startBtn();
             }

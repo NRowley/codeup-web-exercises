@@ -1,0 +1,7 @@
+.invisible{
+    visibility: hidden;
+}
+
+.dt-highlight {
+    background-color: orangered;
+}

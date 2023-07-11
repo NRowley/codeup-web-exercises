@@ -9,6 +9,7 @@ let game = {
     playerLives: ($("#lives").children()).length,
     iconPresent: false,
     success: false,
+    hits: 0,
     start: false
 };
 const up = 38;
@@ -57,13 +58,13 @@ let startBtn = function () {
         $('#start').css('background-color', 'grey');
         $('#start').css('color', 'black');
         $('#start').html('PAUSE');
-        generateIconsIntervalId = setInterval(generateIcons, 100);
+        generateIconsIntervalId = setInterval(generateIcons, (500 - ((game.hits + 1) * 100)));
     } else if ($('#start').html() === `RESUME`) {
         console.log(`RESUME GAME`);
         $('#start').css('background-color', 'grey');
         $('#start').css('color', 'black');
         $('#start').html('PAUSE');
-        generateIconsIntervalId = setInterval(generateIcons, 100);
+        generateIconsIntervalId = setInterval(generateIcons, (500 - ((game.hits + 1) * 100)));
     } else if ($('#start').html() === `PAUSE`) {
         console.log(`GAME PAUSED`);
         $('#start').css('background-color', 'orangered');
@@ -87,7 +88,7 @@ let generateIcons = function () {
             $('.game-icon').css('color', 'white');
             $('.game-icon').html("SUCCESS");
             clearInterval(generateIconsIntervalId);
-            setTimeout(gameOver(), 1000);
+            setTimeout(gameOver(), 500);
         }
 
         if(!game.success){
