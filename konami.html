@@ -48,6 +48,46 @@
 </div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    "use strict"
+    let konamiCodeInput = [];
+    let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+    $(document).keyup(function (event) {
+        console.log(event.keyCode);
+        konamiCodeInput.push(event.keyCode);
+        console.log(`Code Input: ${konamiCodeInput}`);
+        if (game.start) {
+            let input;
+            if (event.keyCode === 38) {
+                input = "&uarr";
+            } else if (event.keyCode === 40) {
+                input = "&darr";
+            } else if (event.keyCode === 37) {
+                input = "&larr";
+            } else if (event.keyCode === 39) {
+                input = "&rarr";
+            }
+            if (input === iconDirections[inputGenerator()]) {
+                $('.game-icon').css('background-color', 'blue');
+                game.success = true;
+            }
+
+        } else if (!game.start) {
+            let i = 0;
+            if (konamiCodeInput[i] != konamiCode[i]) {
+                konamiCodeInput = [];
+            } else if (konamiCodeInput.toString() === konamiCode.toString()) {
+                alert(`Success! Extra-lives +30!`);
+                addHearts();
+            }
+            if (event.keyCode === 32) {
+                game.start = true;
+                startBtn();
+            }
+        }
+    });
+</script>
 <script src="js/konami.js"></script>
 </body>
 </html>
