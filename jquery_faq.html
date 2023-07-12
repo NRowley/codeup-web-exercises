@@ -9,43 +9,87 @@
     <link rel="stylesheet" href="css/jquery_faq.css">
 </head>
 <body>
-<h1>National Park FAQs</h1>
-<dl>
-    <dt>What are National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+<div class="exercise-column">
+    <h1>National Park FAQs</h1>
+    <h3>Nic National Park</h3>
+    <ul class="">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+    <h3>Kaitelyn National Park</h3>
+    <ul class="">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+    <h3>Killian National Park</h3>
+    <ul class="">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+    <button class="li-btn" id="li-btn">Highlight Last</button>
+    <dl>
+        <dt>What are National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>Where are National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>Where are National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>Why are there National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>Why are there National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>Who manages are National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>Who manages are National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>How are National Parks established?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>How are National Parks established?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>When are National Parks open?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>When are National Parks open?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>What animals live in National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>What animals live in National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>Are National Parks free to visit?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>Are National Parks free to visit?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>How do you get a job at National Parks?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <dt>How do you get a job at National Parks?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
 
-    <dt>How many National Parks are there?</dt>
-    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
-    <button class="visibility-btn" id="visibility-btn">Show FAQs</button>
-</dl>
+        <dt>How many National Parks are there?</dt>
+        <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, nam?</dd>
+        <!--    <button class="visibility-btn" id="visibility-btn">Show FAQs</button>-->
+    </dl>
+</div>
+
+<div class="bonus-column">
+    <h2>BONUS PICTURE SWAPPER THING</h2>
+    <div class="picture-wrapper">
+        <div class="picture-1"></div>
+        <div class="picture-2"></div>
+        <div class="picture-3"></div>
+    </div>
+    <div class="picture-btns">
+        <button class="pic-btn-1 pic-btn">GO LEFT</button>
+        <button class="pic-btn-2 pic-btn">RANDOM</button>
+        <button class="pic-btn-3 pic-btn">GO RIGHT</button>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</body>
+</html>
 <script>
     "use strict"
+    $('.exercise-column').append(`
+            <button class="visibility-btn" id="visibility-btn">Show FAQs</button>
+    `)
     // $('#visibility-btn').on('click', function () {
     //     console.log('btn click');
     //     $('dd').toggleClass('invisible');
@@ -67,22 +111,97 @@
     //JS dd visibility
     visiBtn.addEventListener('click', () => {
         console.log('btn click')
-        let i = 0;
         // for (let i = 0; i < ddVisi.length; i++) {
         //     ddVisi[i].classList.toggle('invisible');
         // }
-        ddVisi.forEach(() => (ddVisi[i].classList.toggle('invisible'), i++));
+        ddVisi.forEach((ddElement) => (ddElement.classList.toggle('invisible')));
     });
 
     //JS dt highlighter
     document.addEventListener('click', (event) => {
         let dtClicked = event.target;
-        console.log(dtClicked);
         if (dtClicked.localName === "dt") {
             dtClicked.classList.toggle('dt-highlight');
         }
     });
 
+    //TRAVERSING EXERCISES-----------------------------------------------
+    // Create a button that, when clicked, makes the last li in each ul have a yellow background.
+    //JS Variable queries
+    const liBtn = document.querySelector('.li-btn');
+    const ul = document.querySelectorAll('ul');
+    const li = document.querySelector('li');
+    const h3clicker = document.querySelectorAll('h3');
+    console.log(h3clicker);
+
+    liBtn.addEventListener('click', function () {
+        for (let i = 0; i < ul.length; i++) {
+            ul[i].children[ul[i].children.length - 1].classList.toggle('li-highlight');
+        }
+    })
+    //JQuery ver
+    // $('.li-btn').on('click', (e) => {
+    //     $('ul').each(function (index, element) {
+    //         // $(element).children().last().css('background-color', 'yellow');
+    //         $(element).children().last().toggleClass('li-highlight');
+    //         // console.log($('element:last-child'));
+    //         // $('element:last-child').toggleClass('li-highlight');
+    //     })
+    // })
+
+    // When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
+    //JS Ver
+
+    //JQ ver
+    // $('h3').on('click', (e) => {
+    //     $(e.target).next().toggleClass('bold');
+    //     // $(e.target).next().css('font-weight', 'bold');
+    // });
+
+    //     When any list item is clicked, first li of the parent ul should have a font color of blue
+
+    //JQ Ver
+    $('li').on('click', function (e) {
+        // $(e.target).parent().children().first().css('color', 'blue');
+        $(e.target).parent().children().first().toggleClass("blue-maker");
+    })
+
+    // Bonus
+    // Create 3 divs that each look like a picture frame. Each one should have a unique background image and a button underneath that swaps the image from the frame. Use the traversing functions of jQuery to accomplish this.
+    //
+    //     The rules are the following:
+    //
+    //     The left frame swaps to the right and takes the image from the frame in the center.
+    //     The center frame swaps randomly to either the left or right.
+    //     The right frame swaps to the left and takes the image from the frame in the center.
+
+    //JQ ver
+
+
+    $('.pic-btn-1').on('click', () => {
+        //actual way...
+        let centerFrame = $('.picture-wrapper').children().first().next();
+        $('.picture-wrapper').children().first().next().remove();
+        $('.picture-wrapper').prepend(centerFrame);
+    })
+
+    $('.pic-btn-2').on('click', () => {
+        //random swap
+        let centerFrame = $('.picture-wrapper').children().first().next();
+        $('.picture-wrapper').children().first().next().remove();
+
+        let randomFrame = Math.floor(Math.random() * 2)
+        if (randomFrame === 1) {
+            $('.picture-wrapper').prepend(centerFrame);
+        } else if {
+            $('.picture-wrapper').append(centerFrame);
+        }
+    })
+
+    $('.pic-btn-3').on('click', () => {
+        //right becomes center(scroll forward), left becomes right(moves to first)
+        let centerFrame = $('.picture-wrapper').children().first().next();
+        $('.picture-wrapper').children().first().next().remove();
+        $('.picture-wrapper').append(centerFrame);
+    })
 </script>
-</body>
-</html>

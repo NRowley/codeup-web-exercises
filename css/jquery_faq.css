@@ -1,7 +1,62 @@
-.invisible{
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.invisible {
     visibility: hidden;
 }
 
 .dt-highlight {
     background-color: orangered;
+}
+
+.li-highlight {
+    background-color: yellow;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.blue-maker {
+    color: blue;
+}
+.bonus-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.picture-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+}
+
+.picture-1 {
+    height: 100px;
+    width: 100px;
+    border: solid 5px black;
+    margin-right: 5px;
+    background-color: red;
+}
+
+.picture-2 {
+    height: 100px;
+    width: 100px;
+    border: solid 5px black;
+    margin-right: 5px;
+    background-color: royalblue;
+}
+
+.picture-3 {
+    height: 100px;
+    width: 100px;
+    border: solid 5px black;
+    margin-right: 5px;
+    background-color: seagreen;
+}
+.pic-btn {
+    margin-top: 5px;
+    margin-right: 38px;
 }
