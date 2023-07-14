@@ -12,10 +12,10 @@ function renderBlogPosts(posts){
         console.log(posts[i].categories);
         blogPosts.innerHTML += (`
         <div class="card product-card" style="width: 18rem;">
-                    <div class="card-body post-card">
+                    <div class="card-body">
                     <h5 class="card-title">${posts[i].title}</h5>
                     <p class="card-text">${posts[i].content}</p>
-                    <p class="card-text"><p>Categories: ${posts[i].categories.join(' ')}</p><p>Date Posted: ${posts[i].date}</p></p>
+                    <p class="card-text"><p>Categories: ${posts[i].categories.join(', ')}</p><p>Date Posted: ${posts[i].date}</p></p>
                    
                     </div>
                 </div>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    // Write a function called removeEvens that takes an array of numbers
+    // And removes any even number from the array
+
+    // Examples:
+
+    let arr1 = [1, 3, 2, 13, 74, 33];
+    // Expected Output: [1, 3, 13, 33]
+
+    let arr2 = [62, 3, 2, 8, 'bob', 7];
+
+    // Expected Output: [3, 531, 7]
+
+
+    function removeEvens(numArray) {
+        let newArray = [];
+        // for (let i = 0; i < numArray.length; i++) {
+        //     if(numArray[i]%2 !== 0){
+        //         newArray.push(numArray[i]);
+        //     }
+        // }
+        // numArray.forEach((num)=>{
+        //     if(num%2!==0){
+        //         newArray.push(num);
+        //     }
+        // })
+        for(const num of numArray){
+            if(num%2 === 1){
+                newArray.push(num);
+            }
+        }
+
+        return newArray;
+    }
+
+    console.log(removeEvens(arr1));
+    console.log(removeEvens(arr2));
+
+</script>
+</body>
+</html>

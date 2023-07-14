@@ -57,7 +57,7 @@ h1 {
     color: white;
 }
 .post-card{
-    width: 100%;
+    width: 400px;
 }
 .card-title {
     color: var(--main-orange);
@@ -65,5 +65,11 @@ h1 {
 }
 
 .card-text {
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-posts {
+    display: flex;
+    flex-direction: column;
 }

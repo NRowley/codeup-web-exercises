@@ -29,7 +29,7 @@
                 <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title">${products[i].title}</h5>
-                    <p class="card-text"><span>$${products[i].price}$</span><span>${products[i].quantity} in stock</span></span></p>
+                    <p class="card-text"><span>$${products[i].price}</span><span>${products[i].quantity} in stock</span></span></p>
                     <p class="card-text">${products[i].categories.join(' ')}</p>
                     <a href="#" class="btn btn-primary">Add to shopping cart</a>
                     </div>
