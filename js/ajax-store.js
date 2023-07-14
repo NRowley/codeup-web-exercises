@@ -9,7 +9,6 @@
         renderInventory(response);
     });
 
-    //Why does the refresh fuck up my formatting???----------------
     let refreshInventory = function () {
         $.ajax('data/inventory.json').done((response) => {
             console.log('Refresh Inventory');

@@ -1,3 +1,4 @@
-.marker-toggle {
-    visibility: hidden;
+.mapboxgl-marker{
+    visibility: unset;
 }
+

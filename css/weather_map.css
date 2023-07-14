@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+    margin: 0px;
+}
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    border: solid 3px darkgrey;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+.header {
+    width: 100%;
+    margin: 0px 0px 20px;
+    padding-left: 25px;
+}
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+    width: 80rem;
+}
+
+.map {
+    height: 25rem;
+    width: 50rem;
+    border: solid 3px darkgrey;
+    border-radius: 5px;
+}
+
+.forecast-cards {
+    display: flex;
+    flex-direction: row;
+    height: 11rem;
+    width: 80rem;
+    border: solid 3px darkgrey;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.5);
+    margin: 5px;
+}
