@@ -11,22 +11,23 @@
     <!-- Mapbox CSS -->
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet'/>
     <link rel="stylesheet" href="css/weather_map.css">
-
-
 </head>
 <body>
 <header class="container">
     <div class="row">
         <div class="column header">
         <h1>WEATHER-APP</h1>
+            <input type="text" value="" class="search" id="search" placeholder="Enter a City">
         </div>
     </div>
 </header>
 <main class="container">
     <div class="row">
         <div class="column">
-            <div class="forecast-cards">
+            <div class="forecast-header">
 
+            </div>
+            <div class="forecast-cards">
             </div>
             <div class="map-container">
                 <div class="map" id="map"></div>
@@ -40,6 +41,7 @@
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--MY JS-->
 <script src="js/weather_map.js"></script>
 <!--DEMO STUFF-->
 

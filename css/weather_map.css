@@ -14,22 +14,42 @@ body{
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.5);
 }
+
+h1{
+    display: flex;
+    flex-grow: 1;
+}
+.h2-day{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.search {
+    display: flex;
+    height: 20px;
+    width: 250px;
+    margin-right: 20px;
+    border: solid 3px darkgrey;
+    border-radius: 5px;
+}
 .header {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     margin: 0px 0px 20px;
     padding-left: 25px;
+    align-items: center;
 }
 .map-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 30rem;
-    width: 80rem;
+    /*align-items: center;*/
+    height: 500px;
+    width: 1200px;
 }
 
 .map {
-    height: 25rem;
-    width: 50rem;
+    height: 400px;
+    width: 700px;
     border: solid 3px darkgrey;
     border-radius: 5px;
 }
@@ -37,10 +57,39 @@ body{
 .forecast-cards {
     display: flex;
     flex-direction: row;
-    height: 11rem;
-    width: 80rem;
+    height: 200px;
+    width: 1200px;
     border: solid 3px darkgrey;
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.5);
     margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.forecast-header {
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.day-forecast-card {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 250px;
+    border: solid 3px white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.h2-day {
+    margin-left: 10px;
+}
+.conditions {
+    display: flex;
+    margin: 0px 0px 0px 10px;
+}
+
+.forecast-city {
+    margin-top: 15px;
 }

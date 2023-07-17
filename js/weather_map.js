@@ -8,11 +8,13 @@ const map = new mapboxgl.Map({
     zoom: 1,
     center: [8.25069, 49.99234]
 });
+
 //OPEN WEATHER
 const OPEN_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/forecast';
+let currentWeatherData;
 //QUERIES
-let forecastCard = document.querySelector('.forecast-cards');
-
+const forecastCards = document.querySelector('.forecast-cards');
+const forecastHeader = document.querySelector('.forecast-header');
 //Subject to change...
 const SAN_ANTONIO_COORD = ['29.4260', '-98.4861'];
 console.log(...SAN_ANTONIO_COORD);
@@ -25,20 +27,54 @@ function createWeatherURL(lat, lon) {
     return `${OPEN_WEATHER_URL}?lat=${lat}&lon=${lon}&units=imperial&appid=${OPEN_WEATHER_APPID}`;
 }
 
-function getFiveDayForecast (city){
-    let forecast = [];
+function getWeatherData(url){
+    $.ajax(url).done(data => {
+        currentWeatherData = data;
+        console.log(currentWeatherData);
+        getFiveDayForecast(data);
+    }).fail(console.error);
+}
 
+function renderForecastCard(forecast){
+    console.log('rendering cards')
+    console.log(currentWeatherData);
+    forecastHeader.innerHTML = (`
+        <h3 class="forecast-city">${currentWeatherData.city.name.toUpperCase()}</h3>
+    `);
+    forecastCards.innerHTML = "";
+    forecast.forEach((day) => {
+        forecastCards.innerHTML += (`
+        <div class="day-forecast-card">
+        <h4 class="h2-day">Day: ${day.dt_txt}</h4>
+        <p class="conditions temp">${day.main.temp_max}/${day.main.temp_min}</p>
+        <p class="conditions">${day.weather[0].main}</p>
+        <p class="conditions">${day.weather[0].main}</p>
+        <p class="conditions">${day.weather[0].main}</p>
+        <p class="conditions">${day.weather[0].main}</p>
+        </div>
+
+    `)
+    })
 }
-function renderForecastCard(){
+function getFiveDayForecast (data){
+    let forecast = [];
+    console.log(data.list);
+    for(let i = 0; i < data.list.length; i++){
+        if(i % 8 === 0){
+            forecast.push(data.list[i]);
+        }
+    }
+    console.log(forecast);
+    renderForecastCard(forecast);
+    return(forecast);
 }
+
 
 //EVENTS///////////////////////////////
 
 
 //RUN ON LOAD//////////////////////////
-$.ajax(URL).done(data => {
-    console.log(data);
-}).fail(console.error);
+getWeatherData(URL);
 
 //DEMO
 /**
