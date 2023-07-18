@@ -26,9 +26,7 @@ const forecastCards = document.querySelector('.forecast-cards');
 const forecastHeaderCity = document.querySelector('.forecast-header-city');
 const searchTextBox = document.querySelector('.search');
 const searchSubmitBtn = document.querySelector('#search-submit');
-const historyHead = document.querySelector('#history-head');
 const historyItems = document.querySelector('.history-col');
-const savedHead = document.querySelector('#saved-head');
 const savedItems = document.querySelector('.saved-col');
 let historyItemButtons = document.querySelectorAll('.history-item');
 let savedItemButtons = document.querySelectorAll('.saved-item');
@@ -200,12 +198,10 @@ function renderAddressHistory(addresses) {
 }
 
 function addToSaved(addresses) {
-    console.log('adding to saved items')
-    console.log(addresses);
     savedItems.innerHTML = "";
     addresses.forEach((address) => {
         savedItems.innerHTML += (`
-        <div class="saved-item"><span class="saved-item-name">${address}</span></div>
+        <div class="saved-item"><span class="saved-item-name">${address}</span><span class="remove-saved-item">X</span></div>
         `)
         savedItemButtons = document.querySelectorAll('.saved-item');
     })
@@ -219,6 +215,20 @@ function historyUpdate(place) {
     } else {
         addressHistory.push(place);
     }
+}
+
+function deleteSavedAddress(address) {
+    console.log('in delete function');
+    console.log(address);
+    console.log(savedAddresses);
+    let updateSavedAddress = [];
+    savedAddresses.forEach((item) => {
+        console.log(item);
+        if (item !== address.innerHTML) {
+            updateSavedAddress.push(item);
+        }
+    })
+    savedAddresses = updateSavedAddress;
 }
 
 function goToPlace(place) {
@@ -239,16 +249,12 @@ searchSubmitBtn.addEventListener('click', (event) => {
     createMarker(searchTextBox.value);
 })
 historyItems.addEventListener('click', (event) => {
-    console.log(event.target);
     let target = event.target;
     if (target.classList.contains('fav-star')) {
         let historyName = target.previousElementSibling.innerHTML;
-        console.log(historyName);
         if (savedAddresses.includes(historyName)) {
             alert(`${historyName} is already in favorites!`);
         } else {
-            // event.target.innerHTML = '&starf;';
-            event.target.style.color = 'gold';
             savedAddresses.push(historyName);
             addToSaved(savedAddresses);
         }
@@ -260,8 +266,14 @@ historyItems.addEventListener('click', (event) => {
     }
 })
 savedItems.addEventListener('click', (event) => {
+    console.log(event.target.parentElement);
     if (event.target.classList.contains('saved-item-name')) {
         createMarker(event.target.innerHTML);
+    } else if (event.target.classList.contains('remove-saved-item')) {
+        let addressName = event.target.previousElementSibling;
+        event.target.parentElement.remove();
+        savedItemButtons = document.querySelectorAll('.saved-item');
+        deleteSavedAddress(addressName)
     }
 })
 forecastCards.addEventListener('mouseover', (event) => {

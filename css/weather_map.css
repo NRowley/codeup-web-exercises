@@ -261,7 +261,30 @@ h3.forecast-city {
 
 .history-item-name {
     display: flex;
+    flex-grow: 1;
+    height: 30px;
+    align-items: center;
     margin-left: 10px;
+}
+
+.saved-item-name {
+    display: flex;
+    flex-grow: 1;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.remove-saved-item {
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.remove-saved-item:hover {
+    color: red;
 }
 
 .fav-star {
