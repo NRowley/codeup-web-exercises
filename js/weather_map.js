@@ -35,7 +35,7 @@ let savedItemButtons = document.querySelectorAll('.saved-item');
 let favStar = document.querySelectorAll('.fav-star');
 const bodyBg = document.querySelector('body');
 const forecastHeaderWrapper = document.querySelector('.forecast-header-wrapper');
-const mapContainer = document.querySelector('.map-container');
+let allForecastCards = document.querySelectorAll('.day-forecast-card');
 
 //OTHER VARIABLES
 const monthsArr = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -45,19 +45,19 @@ let hiddenConditions;
 
 
 //FUNCTIONS////////////////////////////
-//WEATHER FUNCTIONS
+//WEATHER FUNCTIONS--------------------------------
 function createWeatherURL(lon, lat) {
     return `${OPEN_WEATHER_URL}?lat=${lat}&lon=${lon}&units=imperial&appid=${OPEN_WEATHER_APPID}`;
 }
+
 function getWeatherData(url) {
     $.ajax(url).done(data => {
         currentWeatherData = data;
-        console.log(currentWeatherData);
         getFiveDayForecast(data);
     }).fail(console.error);
 }
+
 function renderForecastCard(forecast) {
-    calculateAvgTemp(localAvgTemp);
     forecastHeaderWrapper.style.display = 'flex';
     forecastHeaderCity.innerHTML = (`
         <h3 class="forecast-city">${currentWeatherData.city.name.toUpperCase()}</h3>
@@ -83,41 +83,75 @@ function renderForecastCard(forecast) {
         </div>
     `)
     })
-
+    allForecastCards = document.querySelectorAll('.day-forecast-card');
+    calculateAvgTemp(localAvgTemp);
 }
+
 function calculateAvgTemp(temps) {
     let tempSum = temps[0] + temps [1] + temps [2] + temps [3] + temps [4];
     avgTemp = tempSum / 5;
     localAvgTemp = [];
-    if (avgTemp >= 100) {
-        bodyBg.style.backgroundColor = '#ce5b3e';
-    } else if (avgTemp >= 80) {
-        bodyBg.style.backgroundColor = '#e3964f';
-    } else if (avgTemp >= 65) {
-        bodyBg.style.backgroundColor = '#4ca273';
-    } else if (avgTemp >= 40) {
-        bodyBg.style.backgroundColor = '#4f7fe1';
-    } else if (avgTemp < 35) {
-        bodyBg.style.backgroundColor = '#74a1b2';
-    } else {
-        bodyBg.style.backgroundColor = 'black';
+    for (let i = 0; i < 5; i++) {
+        if (avgTemp >= 95) {
+            forecastCards.style.backgroundColor = '#ce5b3e';
+            bodyBg.style.backgroundColor = '#410000';
+        } else if (avgTemp >= 80) {
+            forecastCards.style.backgroundColor = '#e3964f';
+            bodyBg.style.backgroundColor = '#652d00';
+        } else if (avgTemp >= 65) {
+            forecastCards.style.backgroundColor = '#4ca273';
+            bodyBg.style.backgroundColor = '#003d19';
+        } else if (avgTemp >= 40) {
+            forecastCards.style.backgroundColor = '#4f7fe1';
+            bodyBg.style.backgroundColor = '#001848';
+        } else if (avgTemp <= 35) {
+            forecastCards.style.backgroundColor = '#74a1b2';
+            bodyBg.style.backgroundColor = '#212d31';
+        }
+
+        if (temps[i] >= 95) {
+            allForecastCards[i].style.backgroundColor = '#ce5b3e';
+        } else if (temps[i] >= 80) {
+            allForecastCards[i].style.backgroundColor = '#e3964f';
+        } else if (temps[i] >= 65) {
+            allForecastCards[i].style.backgroundColor = '#4ca273';
+        } else if (temps[i] >= 40) {
+            allForecastCards[i].style.backgroundColor = '#4f7fe1';
+        } else if (temps[i] <= 35) {
+            allForecastCards[i].style.backgroundColor = '#74a1b2';
+        }
     }
+    //
+    // if (avgTemp >= 95) {
+    //     allForecastCards.forEach((card) => {
+    //         card.style.backgroundColor = '#ce5b3e';
+    //     })
+    // } else if (avgTemp >= 80) {
+    //     bodyBg.style.backgroundColor = '#e3964f';
+    // } else if (avgTemp >= 65) {
+    //     bodyBg.style.backgroundColor = '#4ca273';
+    // } else if (avgTemp >= 40) {
+    //     bodyBg.style.backgroundColor = '#4f7fe1';
+    // } else if (avgTemp < 35) {
+    //     bodyBg.style.backgroundColor = '#74a1b2';
+    // } else {
+    //     bodyBg.style.backgroundColor = 'black';
+    // }
 }
+
 function getFiveDayForecast(data) {
     let forecast = [];
-    // console.log(data.list);
     for (let i = 0; i < data.list.length; i++) {
         if (i % 8 === 0) {
             forecast.push(data.list[i]);
             localAvgTemp.push(data.list[i].main.temp_max);
         }
     }
-    console.log(localAvgTemp);
     renderForecastCard(forecast);
     return (forecast);
 }
 
-//MAPBOX FUNCTIONS
+//MAPBOX FUNCTIONS------------------------------
 function createMarker(address) {
     geocode(address, MAPBOX_TOKEN).then(function (coordinates) {
         searchAddress = {
@@ -132,8 +166,29 @@ function createMarker(address) {
         goToPlace(searchAddress);
     })
 }
+
+function clickCreateMarker(event) {
+    reverseGeocode(event.lngLat, MAPBOX_TOKEN).then(function (name) {
+        let tempName = name.split(" ");
+        let shortName = [];
+        shortName.push(tempName[tempName.length - 1]);
+        shortName.join();
+
+        let coordinates = [event.lngLat.lng, event.lngLat.lat];
+        searchAddress = {
+            coord: coordinates,
+            name: shortName,
+            info: ""
+        }
+        if (marker) {
+            marker.remove();
+        }
+        marker = new mapboxgl.Marker().setLngLat(event.lngLat).addTo(map);
+        goToPlace(searchAddress);
+    })
+}
+
 function renderAddressHistory(addresses) {
-    console.log('Rendering Address history')
     historyItems.innerHTML = "";
     addresses.forEach((address) => {
         historyItems.innerHTML += (`
@@ -141,9 +196,9 @@ function renderAddressHistory(addresses) {
         `)
         historyItemButtons = document.querySelectorAll('.history-item');
         favStar = document.querySelectorAll('.fav-star');
-        console.log(historyItemButtons);
     })
 }
+
 function addToSaved(addresses) {
     console.log('adding to saved items')
     console.log(addresses);
@@ -155,6 +210,7 @@ function addToSaved(addresses) {
         savedItemButtons = document.querySelectorAll('.saved-item');
     })
 }
+
 function historyUpdate(place) {
     if (addressHistory.length >= 10) {
         console.log('remove last');
@@ -164,21 +220,19 @@ function historyUpdate(place) {
         addressHistory.push(place);
     }
 }
+
 function goToPlace(place) {
-    console.log('in goToPlace function');
     map.setCenter(place.coord);
     map.setZoom(5);
     historyUpdate(place);
-    console.log(addressHistory);
     weatherURL = createWeatherURL(...place.coord);
     renderAddressHistory(addressHistory);
     getWeatherData(weatherURL);
 }
 
 //EVENTS///////////////////////////////
-//Place marker by click...
-$(map).on('click', (event) => {
-    console.log(event.target);
+map.on('click', (event) => {
+    clickCreateMarker(event);
 })
 searchSubmitBtn.addEventListener('click', (event) => {
     map._marker = [];
@@ -216,7 +270,6 @@ forecastCards.addEventListener('mouseover', (event) => {
             hiddenConditions = event.target.nextElementSibling.nextElementSibling;
             cardEvent = event.target.parentElement;
             cardEvent.style.transform = 'translateY(-2rem)';
-            cardEvent.style.backgroundColor = 'grey';
             cardEvent.style.borderBottom = "unset";
             hiddenConditions.style.display = 'unset';
             cardOpen = true;
@@ -226,24 +279,21 @@ forecastCards.addEventListener('mouseover', (event) => {
 forecastCards.addEventListener('mouseleave', (event) => {
     if (cardOpen) {
         cardEvent.style.transform = 'unset';
-        cardEvent.style.backgroundColor = 'unset';
         cardEvent.style.borderBottom = 'solid 3px white'
         hiddenConditions.style.display = 'none';
         cardOpen = false;
     }
 })
 searchTextBox.addEventListener('keyup', (event) => {
-    console.log(event.keyCode);
     if (event.keyCode === 13) {
         createMarker(searchTextBox.value);
     }
 })
-document.addEventListener('keyup', (event)=>{
-    console.log(event.key);
-    if(event.key === 'ArrowUp'){
-        map.setZoom(map.getZoom()+1);
-    } else if(event.key === 'ArrowDown'){
-        map.setZoom(map.getZoom()-1);
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'ArrowUp') {
+        map.setZoom(map.getZoom() + 1);
+    } else if (event.key === 'ArrowDown') {
+        map.setZoom(map.getZoom() - 1);
     }
 })
 
