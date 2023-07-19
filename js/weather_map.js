@@ -4,7 +4,7 @@
 mapboxgl.accessToken = MAPBOX_TOKEN;
 let map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/outdoors-v12',
+    style: 'mapbox://styles/mapbox/dark-v11',
     zoom: 1,
     center: [8.25069, 49.99234]
 });
@@ -20,6 +20,7 @@ let weatherURL;
 let dateFormat;
 let localAvgTemp = [];
 let avgTemp;
+let weatherIconArray = ['&#x2600;', '&#x2601;', '&#x2602;', '?']
 
 //QUERIES
 const forecastCards = document.querySelector('.forecast-cards');
@@ -34,6 +35,10 @@ let favStar = document.querySelectorAll('.fav-star');
 const bodyBg = document.querySelector('body');
 const forecastHeaderWrapper = document.querySelector('.forecast-header-wrapper');
 let allForecastCards = document.querySelectorAll('.day-forecast-card');
+const clearHistory = document.querySelector('.clear-history-btn');
+const clearSaved = document.querySelector('.clear-saved-btn');
+const zoomIn = document.querySelector('.zoom-in-btn');
+const zoomOut = document.querySelector('.zoom-out-btn');
 
 //OTHER VARIABLES
 const monthsArr = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -66,12 +71,22 @@ function renderForecastCard(forecast) {
         let dayDate = dateFormat.getDate().toString();
         let month = monthsArr[dateFormat.getMonth() - 1];
         let year = dateFormat.getFullYear();
-        let sky = day.weather[0].description;
+        let sky = day.weather[0].main.toLowerCase();
+        let skyIcon;
+        if (sky.includes('clear')) {
+            skyIcon = weatherIconArray[0];
+        } else if (sky.includes('cloud')) {
+            skyIcon = weatherIconArray[1];
+        } else if (sky.includes('rain')) {
+            skyIcon = weatherIconArray[2];
+        } else {
+            skyIcon = weatherIconArray[weatherIconArray.length - 1];
+        }
 
         forecastCards.innerHTML += (`
         <div class="day-forecast-card">
-        <h4 class="h4-day">${dayDate}${month}${year}</h4>
-        <p class="temp">${day.main.temp_max}&deg | ${day.main.temp_min}&deg</p>
+        <h4 class="h4-day">${dayDate} ${month} ${year}<span class="weather-icon">${skyIcon}</span></h4>
+        <p class="temp">${day.main.temp_min}&deg - ${day.main.temp_max}&deg</p>
         <div class="hide">
         <p class="conditions">Sky: ${day.weather[0].main}</p>
         <p class="conditions">Humidity: ${day.main.humidity}</p>
@@ -92,17 +107,17 @@ function calculateAvgTemp(temps) {
     for (let i = 0; i < 5; i++) {
         if (avgTemp >= 95) {
             forecastCards.style.backgroundColor = '#ce5b3e';
-            bodyBg.style.backgroundColor = '#410000';
+            bodyBg.style.backgroundColor = '#6c1a12';
         } else if (avgTemp >= 80) {
             forecastCards.style.backgroundColor = '#e3964f';
             bodyBg.style.backgroundColor = '#652d00';
-        } else if (avgTemp >= 65) {
+        } else if (avgTemp >= 60) {
             forecastCards.style.backgroundColor = '#4ca273';
             bodyBg.style.backgroundColor = '#003d19';
         } else if (avgTemp >= 40) {
             forecastCards.style.backgroundColor = '#4f7fe1';
             bodyBg.style.backgroundColor = '#001848';
-        } else if (avgTemp <= 35) {
+        } else if (avgTemp <= 30) {
             forecastCards.style.backgroundColor = '#74a1b2';
             bodyBg.style.backgroundColor = '#212d31';
         }
@@ -111,11 +126,11 @@ function calculateAvgTemp(temps) {
             allForecastCards[i].style.backgroundColor = '#ce5b3e';
         } else if (temps[i] >= 80) {
             allForecastCards[i].style.backgroundColor = '#e3964f';
-        } else if (temps[i] >= 65) {
+        } else if (temps[i] >= 60) {
             allForecastCards[i].style.backgroundColor = '#4ca273';
         } else if (temps[i] >= 40) {
             allForecastCards[i].style.backgroundColor = '#4f7fe1';
-        } else if (temps[i] <= 35) {
+        } else if (temps[i] <= 30) {
             allForecastCards[i].style.backgroundColor = '#74a1b2';
         }
     }
@@ -166,6 +181,7 @@ function createMarker(address) {
 }
 
 function clickCreateMarker(event) {
+
     reverseGeocode(event.lngLat, MAPBOX_TOKEN).then(function (name) {
         let tempName = name.split(" ");
         let shortName = [];
@@ -209,7 +225,6 @@ function addToSaved(addresses) {
 
 function historyUpdate(place) {
     if (addressHistory.length >= 10) {
-        console.log('remove last');
         addressHistory.splice(9, 1);
         addressHistory.unshift(place);
     } else {
@@ -218,12 +233,8 @@ function historyUpdate(place) {
 }
 
 function deleteSavedAddress(address) {
-    console.log('in delete function');
-    console.log(address);
-    console.log(savedAddresses);
     let updateSavedAddress = [];
     savedAddresses.forEach((item) => {
-        console.log(item);
         if (item !== address.innerHTML) {
             updateSavedAddress.push(item);
         }
@@ -232,8 +243,10 @@ function deleteSavedAddress(address) {
 }
 
 function goToPlace(place) {
-    map.setCenter(place.coord);
-    map.setZoom(5);
+    map.flyTo({
+        center: place.coord,
+        zoom: 5
+    })
     historyUpdate(place);
     weatherURL = createWeatherURL(...place.coord);
     renderAddressHistory(addressHistory);
@@ -247,6 +260,7 @@ map.on('click', (event) => {
 searchSubmitBtn.addEventListener('click', (event) => {
     map._marker = [];
     createMarker(searchTextBox.value);
+    searchTextBox.value = "";
 })
 historyItems.addEventListener('click', (event) => {
     let target = event.target;
@@ -271,9 +285,12 @@ savedItems.addEventListener('click', (event) => {
         createMarker(event.target.innerHTML);
     } else if (event.target.classList.contains('remove-saved-item')) {
         let addressName = event.target.previousElementSibling;
-        event.target.parentElement.remove();
-        savedItemButtons = document.querySelectorAll('.saved-item');
-        deleteSavedAddress(addressName)
+        let deleteConfirm = confirm(`Delete ${addressName.innerText}?`)
+        if (deleteConfirm) {
+            event.target.parentElement.remove();
+            savedItemButtons = document.querySelectorAll('.saved-item');
+            deleteSavedAddress(addressName)
+        }
     }
 })
 forecastCards.addEventListener('mouseover', (event) => {
@@ -289,6 +306,7 @@ forecastCards.addEventListener('mouseover', (event) => {
     }
 })
 forecastCards.addEventListener('mouseleave', (event) => {
+    console.log('leaving...')
     if (cardOpen) {
         cardEvent.style.transform = 'unset';
         cardEvent.style.borderBottom = 'solid 3px white'
@@ -299,13 +317,27 @@ forecastCards.addEventListener('mouseleave', (event) => {
 searchTextBox.addEventListener('keyup', (event) => {
     if (event.keyCode === 13) {
         createMarker(searchTextBox.value);
+        searchTextBox.value = "";
     }
 })
-document.addEventListener('keyup', (event) => {
-    if (event.key === 'ArrowUp') {
-        map.setZoom(map.getZoom() + 1);
-    } else if (event.key === 'ArrowDown') {
-        map.setZoom(map.getZoom() - 1);
+zoomIn.addEventListener('click', () => {
+    map.setZoom(map.getZoom() + 1);
+})
+zoomOut.addEventListener('click', () => {
+    map.setZoom(map.getZoom() - 1);
+})
+clearHistory.addEventListener('click', () => {
+    let historyConfirm = confirm("Clear History?");
+    if (historyConfirm) {
+        addressHistory = [];
+        historyItems.innerHTML = "";
+    }
+})
+clearSaved.addEventListener('click', () => {
+    let historyConfirm = confirm("Clear Saved Locations?");
+    if (historyConfirm) {
+        savedAddresses = [];
+        savedItems.innerHTML = "";
     }
 })
 

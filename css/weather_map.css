@@ -12,36 +12,38 @@ body {
 .column {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     border: solid 3px darkgrey;
     border-radius: 5px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 h1 {
     display: flex;
     border-right: solid 5px darkgrey;
-    margin: 0px;
+    margin: 0;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
 
 h3 {
-    margin: 0px;
-    padding-top: 0px;
+    margin: 0;
+    padding-top: 0;
 }
 
 h4 {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .h4-day {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 0px;
+    align-items: center;
+    margin-bottom: 0;
     padding-bottom: 5px;
-    padding-top: 10px;
+    padding-top: 5px;
     height: 25px;
     background-color: darkgrey;
     color: white;
@@ -60,11 +62,19 @@ h4 {
 }
 
 #search-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin-right: 20px;
     border: solid 3px darkgrey;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     height: 38px;
+}
+#search-submit:hover{
+    background-color: black;
+    color: white;
 }
 
 .header {
@@ -78,9 +88,54 @@ h4 {
 .map-container {
     display: flex;
     justify-content: center;
-    height: 500px;
+    height: 450px;
     width: 1200px;
     padding-left: 8px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    width: 1200px;
+    padding: 5px;
+    border-bottom: solid 3px darkgrey;
+    border-right: solid 3px darkgrey;
+    border-left: solid 3px darkgrey;
+    border-radius: 10px;
+}
+
+.zoom-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px darkgrey;
+    border-radius: 5px;
+    height: 38px;
+    margin: 5px;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.zoom {
+    height: 38px;
+    width: 38px;
 }
 
 .map {
@@ -159,13 +214,14 @@ h4 {
 .forecast-cards {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     height: 120px;
     width: 1200px;
     border: solid 3px darkgrey;
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.5);
     margin: 5px;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
 }
 
@@ -215,12 +271,12 @@ h3.forecast-city {
     display: flex;
     flex-direction: column;
     height: 100px;
-    width: 250px;
+    width: 200px;
     border: solid 5px white;
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
+    /*margin-left: 5px;*/
+    /*margin-right: 5px;*/
 }
 
 .h2-day {
@@ -297,4 +353,16 @@ h3.forecast-city {
 .fav-star:hover {
     font-weight: bold;
     color: goldenrod;
+}
+
+.weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    height: 25px;
+    width: 25px;
+    border: solid 2px white;
+    border-radius: 50%;
+    margin-left: 5px;
 }
