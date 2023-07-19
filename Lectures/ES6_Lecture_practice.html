@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6 Practice</title>
+</head>
+<body>
+<script>
+
+    "use strict";
+
+    // ============== MINI EXERCISE 1
+
+    // TODO: Refactor the following older JS code to use more modern syntax. The output should stay the same.
+    // consider how variables are created and the values are concatenated in the string
+
+    // var greatDessert = 'banana pudding';
+    // var badDessert = 'rhubarb pie';
+    // var dessertMessage = 'Well, I love ' + greatDessert + ' but I don\'t care for ' + badDessert + '.';
+    // console.log(dessertMessage);
+    let greatDessert = 'cheesecake';
+    let badDessert = 'anything with too much coconut';
+    let dessertMessage = `I love ${greatDessert}, but I dont care for ${badDessert}`;
+    console.log(dessertMessage);
+
+    // ============== Exponentiation
+
+    // let num1 = Math.pow(4, 2); // before ES6
+    // let num2 = 4 ** 2; // ES6 onwards
+    // console.log(num1);
+    // console.log(num2);
+
+
+    // ============== for ..of loop (works on node lists!!!)
+
+    // const numbers = ["one", "two", "three"];
+
+    // for (let number of numbers) {
+    //     console.log(number);
+    // }
+    //
+    // const hello = 'hello';
+    //
+    // for (let letter of hello) {
+    //     console.log(letter);
+    // }
+
+    //
+    // const people = [
+    //     {
+    //         firstN: 'bob',
+    //         lastN: 'smith'
+    //     },
+    //     {
+    //         firstN: 'sally',
+    //         lastN: 'smith'
+    //     }
+    // ];
+    //
+    // // regular for loop
+    //     for (var i = 0; i < people.length; i += 1) {
+    //         console.log(people[i].firstN);
+    //     }
+    //
+    // // forEach loop version
+    //     people.forEach(function(person) {
+    //         console.log(person.firstN);
+    //     });
+    //
+    // // for...of loop
+    //     for (let person of people) {
+    //         console.log(person.firstN);
+    //     }
+
+    // Works on strings
+
+    // const hello = 'hello';
+    // for (let character of hello) {
+    //     console.log(character);
+    // }
+
+    // ============== MINI EXERCISE 2
+
+    // TODO: Refactor the following code to use ES6 syntax. The output should stay the same.
+    // consider the type of loop, concatenation and how variables are declared
+
+    // var message = '';
+    // var names = ['John', 'Paul', 'George', 'Ringo'];
+    // for (let i = 0; i < names.length; i += 1) {
+    //     message += 'Hello, ' + 'name\n';
+    // }
+    // console.log(message);
+    let message = '';
+    const names = ['Nic', "Kaite", 'Killian', 'Halen'];
+
+    for (let person of names) {
+        message += `Hello, ${person}.\n`;
+    }
+
+    // names.forEach((person)=>{
+    //     message += `Hello, ${person}.\n`;
+    // })
+
+    console.log(message);
+
+    // ============== MINI EXERCISE 3
+
+    // TODO: Refactor the following code to use ES6 syntax. The output should stay the same.
+    // consider how the function is defined
+
+    // var doubleInput = function(input) {
+    //     return input * 2;
+    // }
+
+    const doubleInput = (input) => {
+        return input * 2;
+    }
+
+    // function doubleInput(input) {
+    //     return input * 2;
+    // }
+
+    console.log(doubleInput(5));
+
+
+    // ============== Default Parameter Values
+
+    // Common ES5 approach
+    //     let addArgsA = (num1, num2) => {
+    //         if (num1 === undefined) {
+    //             num1 = 2;
+    //         }
+    //         if (num2 === undefined) {
+    //             num2 = 2;
+    //         }
+    //         return num1 + num2;
+    //     };
+
+    // Better ES6 approach
+
+    // let addArgsB = (num1 = 2, num2 = 2) => num1 + num2;
+
+    // Test output
+
+    // console.log("\nA output...");
+    // console.log(addArgsA());
+    // console.log(addArgsA(1));
+    // console.log(addArgsA(3, 3));
+    //
+    // console.log("\nB output...");
+    // console.log(addArgsB());
+    // console.log(addArgsB(1));
+    // console.log(addArgsB(3, 3));
+
+
+    // ============== Object Assignment Shorthand
+
+    // variables to build object from...
+
+    // let breed = "Pug";
+    // let age = 3;
+    // let name = "Lexie";
+    // let isCute = true;
+    // let coat = "brindle"
+
+    // ES5 way...
+
+    // var dog = {
+    //     breed: breed,
+    //     age: age,
+    //     name: name,
+    //     isCute: isCute
+    // };
+    // //
+    // console.log(dog.name);
+
+    // can also assign properties using dot notation assignment.
+    // var dog = {};
+    // dog.breed = breed;
+
+    // ES6 way...
+
+    // const dog = {
+    //     breed,
+    //     age,
+    //     name,
+    //     isCute,
+    //     coat
+    // };
+    // //
+    // console.log(dog);
+    //
+    // coat = "white";
+    //
+    // console.log(coat)
+    // console.log(dog.coat)
+
+
+    // ============== Object / Array Destructuring
+
+    // object to destructure...
+
+    // const puppy = {
+    //     breed: "Lab",
+    //     age: 10,
+    //     name: "Sabrina",
+    //     isCute: true
+    // };
+
+    // let breed = puppy.breed;
+    // let age = puppy.age;
+    // let name = puppy.name;
+    // let isCute = puppy.isCute;
+
+    // let { breed, age, name, isCute } = puppy;
+
+    // change the values of the property variable, not the object instance
+    // breed = "dalmatian";
+    // age = 6;
+    // name = "Lola"
+    //
+    // console.log(breed);
+    // console.log(age);
+    // console.log(name);
+    // console.log(isCute);
+    // console.log(puppy)
+
+    const data = {
+        hum: ["32%", "35%"],
+        temp: {
+            degreesMetric: 34,
+            degreesImperial: 56
+        },
+        pressure: "1100ml",
+        extra: "asdfasd",
+        extra1: "sdfsdf"
+    }
+
+
+    // destructuring with arrays...
+
+    // let cats = ["CJ", "Claude", "Max"];
+
+    // let [cat1, cat2, cat3] = cats;
+
+    // let cat1 = cats[0];
+    // let cat2 = cats[1];
+    // let cat3 = cats[2];
+    //
+    //
+    // console.log(cat1);
+    // console.log(cat2);
+    // console.log(cat3);
+
+
+    // ============== Destructuring Assignment w/ Functions
+
+    // destructuring...
+
+    // const getArea = ({height, width}) => height * width;
+    //
+    // let shape = {
+    //     height: 20,
+    //     width: 10
+    // };
+    // //
+    // let rectangle1 = {
+    //     height: 40,
+    //     width: 10
+    // }
+    //
+    // let rectangle2 = {
+    //     height: 20,
+    //     width: 40
+    // }
+    // //
+    // console.log(getArea(shape));
+    // console.log(getArea(rectangle1));
+    // console.log(getArea(rectangle2));
+
+    // assignment...
+
+    // let height = 20;
+    // let width = 10;
+    //
+    //
+    // console.log(getArea({height, width}));
+
+
+    // function buildWeatherPanel({temp: {degreesMetric, degreesImperial}, pressure, hum}) {
+    //     // let { hum, temp, pressure } = data;
+    //     // let {degreesMetric, degreesImperial} = temp;
+    //     return `
+    //         <div class="card">
+    //           <p>${hum[1]}</p>
+    //           <p>Metric: ${degreesMetric}, Imperial: ${degreesImperial}</p>
+    //           <p>${pressure}</p>
+    //         </div>
+    //     `;
+    // }
+    //
+    // console.log(buildWeatherPanel(data));
+
+    // ============== MINI EXERCISE 4
+
+    // TODO: Refactor the following code to use ES6 syntax. The output should stay the same.
+    // consider how property values are added to the object and then used in the function
+
+    function printAuthDetails({email, username}) {
+        console.log(`The username is ${username}`);
+        console.log(`The email is ${email}`);
+    }
+
+    const email = prompt('Enter an email address');
+    const username = prompt('Enter an a username');
+    const password = prompt('Enter a password');
+
+    const user = {
+        email,
+        username,
+        password,
+    };
+
+    printAuthDetails(user);
+
+</script>
+
+</body>
+</html>
