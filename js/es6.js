@@ -56,7 +56,7 @@ users.forEach((user) => {
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
-users.forEach(function ({name, email,languages}) {
+users.forEach(function ({name, email, languages}) {
     // TODO: rewrite the code below to use object destructuring assignment
     //       note that you can also use destructuring assignment in the function
     //       parameter definition
@@ -82,6 +82,9 @@ let list = '<ul>';
 // });
 // list += '</ul>';
 
-for(let developer of developers){list += `<li> ${developer} </li>`};
+for (let developer of developers) {
+    list += `<li> ${developer} </li>`
+}
+
 list += `</ul>`;
 console.log(list);

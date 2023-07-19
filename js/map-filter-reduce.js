@@ -41,6 +41,7 @@ const users = [
 
 // Use .filter to create an array of user objects where each user object has at least 3 languages in the languages array.
 console.log(`#1: .filter-------------------`)
+
 const threeLangs = users.filter((user) => {
     if (user.languages.length >= 3) {
         return user;
@@ -84,3 +85,18 @@ const getInstructors = users.reduce((instructorNames, user) => {
 }, "")
 
 console.log(`Your instructors are: ${getInstructors}`)
+
+// Use .reduce to get the unique list of languages from the list of users.
+console.log(`BONUS LEVEL---------------------`)
+const getUserLangs = users.reduce((langs, user)=>{
+    langs.push(`${user.name} knows ${user.languages.join(', ')}`);
+    return langs
+}, [])
+
+const getAllLangs = users.reduce((langs, user)=>{
+    langs += `${user.name}: ${user.languages.join(', ')}\n`
+    return langs;
+}, "")
+
+console.log(getUserLangs);
+console.log(getAllLangs);
