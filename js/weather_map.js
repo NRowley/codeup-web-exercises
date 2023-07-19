@@ -6,7 +6,7 @@ let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v11',
     zoom: 1,
-    center: [8.25069, 49.99234]
+    center: [-98.49, 29.4246]
 });
 let searchAddress;
 let marker;
@@ -58,6 +58,7 @@ function getWeatherData(url) {
         currentWeatherData = data;
         getFiveDayForecast(data);
     }).fail(console.error);
+
 }
 
 function renderForecastCard(forecast) {
@@ -134,22 +135,7 @@ function calculateAvgTemp(temps) {
             allForecastCards[i].style.backgroundColor = '#74a1b2';
         }
     }
-    //
-    // if (avgTemp >= 95) {
-    //     allForecastCards.forEach((card) => {
-    //         card.style.backgroundColor = '#ce5b3e';
-    //     })
-    // } else if (avgTemp >= 80) {
-    //     bodyBg.style.backgroundColor = '#e3964f';
-    // } else if (avgTemp >= 65) {
-    //     bodyBg.style.backgroundColor = '#4ca273';
-    // } else if (avgTemp >= 40) {
-    //     bodyBg.style.backgroundColor = '#4f7fe1';
-    // } else if (avgTemp < 35) {
-    //     bodyBg.style.backgroundColor = '#74a1b2';
-    // } else {
-    //     bodyBg.style.backgroundColor = 'black';
-    // }
+
 }
 
 function getFiveDayForecast(data) {
@@ -177,11 +163,12 @@ function createMarker(address) {
         }
         marker = new mapboxgl.Marker().setLngLat(searchAddress.coord).addTo(map);
         goToPlace(searchAddress);
+        console.log(marker);
     })
+
 }
 
 function clickCreateMarker(event) {
-
     reverseGeocode(event.lngLat, MAPBOX_TOKEN).then(function (name) {
         let tempName = name.split(" ");
         let shortName = [];
@@ -306,7 +293,6 @@ forecastCards.addEventListener('mouseover', (event) => {
     }
 })
 forecastCards.addEventListener('mouseleave', (event) => {
-    console.log('leaving...')
     if (cardOpen) {
         cardEvent.style.transform = 'unset';
         cardEvent.style.borderBottom = 'solid 3px white'
@@ -341,9 +327,7 @@ clearSaved.addEventListener('click', () => {
     }
 })
 
-//RUN ON LOAD//////////////////////////
-
-//DEMO
+//DEMO STUFF
 /**
  * returnMinMaxTemps destructures the OpenWeather 5 Day / 3 Hour Forecast API response to get the daily minimum
  *   and maximum temperatures using a list of 40 three-hour forecast blocks.
