@@ -18,7 +18,7 @@ const getPerson = (id) => {
     // });
 }
 const getFilm = (url) =>{
-    const filmUrl = url;
+
     const options = {
         method: "GET",
         headers: {
@@ -32,9 +32,6 @@ const getFilm = (url) =>{
         .catch(error =>{
             console.log(error.message);
         })
-        // .then((film) => {
-        //     console.log(film);
-        // })
 }
 
 (() => { // IIFE (Immediately Invoked Function Expression)
