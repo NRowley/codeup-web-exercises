@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation Warmups</title>
+</head>
+<body>
+
+<h3>The sum is: <span id="sum-output">0</span></h3>
+
+<label for="number">Number</label>
+<input id="number" type="number" name="number" min="0" max="5" value="0">
+<button id="add-btn">Add</button>
+
+<!--  Include the CDN script for jQuery below -->
+<script
+        src="http://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script>
+
+    "use strict";
+
+    // TODO: add the needed JS so that the number selected in the number input will be added to the number in the span when the button is clicked
+    const sumOutput = document.querySelector('#sum-output');
+    const numberInput = document.querySelector('#number');
+    const addBtn = document.querySelector('#add-btn');
+
+    function sumTheNum() {
+        sumOutput.innerHTML = parseInt(sumOutput.innerHTML) + parseInt(numberInput.value);
+    }
+
+    const sumTheNumJQ = () => {
+        let output = parseInt($('#sum-output').text());
+        let input = parseInt($('#number').val());
+        $('#sum-output').text(input + output);
+    }
+
+
+    //JQ
+    $('#add-btn').on('click', () => {
+        sumTheNumJQ();
+    })
+    $('#number').on('keyup', (e) => {
+        if (e.keyCode === 13) {
+            sumTheNumJQ();
+        }
+    })
+
+    //JS
+    // addBtn.addEventListener('click', () => {
+    //     // sumOutput.innerHTML = parseInt(sumOutput.innerHTML) + parseInt(numberInput.value);
+    //     sumTheNum()
+    // })
+    //
+    // numberInput.addEventListener('keyup', (event) => {
+    //     // console.log(event.keyCode);
+    //     if (event.keyCode === 13) {
+    //         sumTheNum();
+    //     }
+    // })
+
+</script>
+
+</body>
+</html>

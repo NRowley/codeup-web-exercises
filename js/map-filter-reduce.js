@@ -43,9 +43,10 @@ const users = [
 console.log(`#1: .filter-------------------`)
 
 const threeLangs = users.filter((user) => {
-    if (user.languages.length >= 3) {
-        return user;
-    }
+    // if (user.languages.length >= 3) {
+    //     return user;
+    // }
+    return user.languages.length >= 3;
 })
 console.log(threeLangs);
 
@@ -79,8 +80,12 @@ console.log(longestEmail);
 // Use .reduce to get the list of user's names in a single string. Example: Your instructors are: ryan, luis, zach, fernando, justin.
 console.log(`#5: .reduce AGAIN-------------------`)
 
-const getInstructors = users.reduce((instructorNames, user) => {
-    instructorNames += ` ${user.name},`;
+const getInstructors = users.reduce((instructorNames, user, index) => {
+    if (index === (users.length - 1)) {
+        instructorNames += ` and ${user.name}.`
+    } else {
+        instructorNames += ` ${user.name},`;
+    }
     return instructorNames;
 }, "")
 
@@ -88,12 +93,12 @@ console.log(`Your instructors are: ${getInstructors}`)
 
 // Use .reduce to get the unique list of languages from the list of users.
 console.log(`BONUS LEVEL---------------------`)
-const getUserLangs = users.reduce((langs, user)=>{
+const getUserLangs = users.reduce((langs, user) => {
     langs.push(`${user.name} knows ${user.languages.join(', ')}`);
     return langs
 }, [])
 
-const getAllLangs = users.reduce((langs, user)=>{
+const getAllLangs = users.reduce((langs, user) => {
     langs += `${user.name}: ${user.languages.join(', ')}\n`
     return langs;
 }, "")
