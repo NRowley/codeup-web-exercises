@@ -7,7 +7,7 @@ const options = {
     }
 }
 
-const getGitUser = (userName) =>{
+const getGitUser = (userName) => {
     const url = `https://api.github.com/users/${userName}/events`;
     const options = {
         method: "GET",
@@ -16,7 +16,10 @@ const getGitUser = (userName) =>{
         }
     }
     return fetch(url, options)
-        .then(response=> response.json())
+        .then(response => response.json()
+            .then(commits => {
+                return commits[0].created_at;
+            }))
         .catch(error => console.log(error.message));
 }
 
@@ -24,8 +27,9 @@ const getGitUser = (userName) =>{
 (() => {
 //Create a function that accepts a GitHub username, and returns a promise that resolves returning just the date of the last commit that user made. Reference the github api documentation to achieve this.
 
-getGitUser(`NRowley`).then((data)=>{
-    console.log(data[0].created_at);
-});
+    getGitUser(`NRowley`).then((latestCommit) => {
+        // console.log(data[0].created_at);
+        console.log(latestCommit);
+    });
 
 })();
